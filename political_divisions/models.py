@@ -14,5 +14,11 @@ class Province(models.Model):
     governor = models.CharField(max_length=50)
     # official_logo = models.ImageField(, upload_to=None, height_field=None, width_field=None, max_length=None)
 
+    class Meta:
+        verbose_name = "Province"
+        verbose_name_plural = "Provinces"
+
     def __str__(self):
         return self.name
+    
+
