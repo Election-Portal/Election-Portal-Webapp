@@ -1,10 +1,17 @@
 from django.db import models
 from political_parties.models import PoliticalParty
+from electoral_constituencies.models import PradeshSabha, PratinidhiSabha
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 # Create your models here.
 
 
 class Nominee(models.Model):
     full_name = models.CharField("Full Name", max_length=50)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
     political_affiliation = models.ForeignKey(PoliticalParty, related_name = "nominee_political_affiliation_set", on_delete=models.CASCADE)
     dob = models.DateField("Date of Birth", auto_now=False, auto_now_add=False)
     academic_background = models.TextField()
