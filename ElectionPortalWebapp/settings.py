@@ -30,7 +30,20 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+THIRD_PARTY_APPS = []
+
+MY_APPS =[
+    'candidates',
+    'clashes',
+    'electoral_constituencies',
+    'political_divisions',
+    'political_parties',
+    'results',
+
+]
+
+
+SYSTEM_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS + MY_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
