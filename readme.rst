@@ -73,7 +73,7 @@ Now, All our dependencies are fullfilled.
 
 #. In your terminal, Change Directory to the Base Directory of our website. i.e the folder which consist manage.py::
 
-    cd ultimatewebsite
+    cd ElectionPortalWebapp
 #. Then::
 
     python manage.py collectstatic
@@ -85,8 +85,7 @@ Now, All our dependencies are fullfilled.
 
     python manage runserver
 
-#. `Click Here To Check If All Things Are Ready`_ 
-
+#. `Click Here To Check If All Things Are Ready
 .. _Click Here To Check If All Things Are Ready: http://127.0.0.1:8000/members/
 
 This will install all the dependencies in your virtualenv. You can check this at site-packages folder of your virtualenv.
