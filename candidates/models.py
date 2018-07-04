@@ -9,7 +9,9 @@ from django.contrib.contenttypes.models import ContentType
 
 class Nominee(models.Model):
     full_name = models.CharField("Full Name", max_length=50)
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    # Further work required. candidacy_to must include option for the location rather than the model name.
+    limit = models.Q(app_label = 'electoral_constituencies', model = 'pradeshsabha') | models.Q(app_label = 'electoral_constituencies', model = 'pratinidhisabha')
+    content_type = models.ForeignKey(ContentType, limit_choices_to=limit,on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     political_affiliation = models.ForeignKey(PoliticalParty, related_name = "nominee_political_affiliation_set", on_delete=models.CASCADE)
