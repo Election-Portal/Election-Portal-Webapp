@@ -9,6 +9,7 @@ class Province(models.Model):
     capital_city = models.CharField("Capital City", max_length=50)
     area = models.IntegerField()
     population = models.IntegerField()
+    voters = models.IntegerField()
     chief_minister = models.CharField("Chief Minister", max_length=50)
     speaker = models.CharField(max_length=50)
     governor = models.CharField(max_length=50)
