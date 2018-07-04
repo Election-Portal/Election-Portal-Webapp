@@ -8,8 +8,8 @@ Election Portal Web App
 The Project Name is [Election Portal Web App]
 [PROJECT_URL]
 
-Prerequisites - System packages
--------------------------------
+Prerequisites
+-------------
 
 Installing Python
 ~~~~~~~~~~~~~~~~~
