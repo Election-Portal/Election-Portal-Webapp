@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('province/', include('political_divisions.urls')),
+    path('candidates/', include('candidates.urls')),
 ]

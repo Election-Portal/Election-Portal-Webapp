@@ -1,36 +1,45 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.views import View
 from political_divisions.forms import ProvinceForm
 
 # Create your views here.
 
 
-# def add_member(request):
+
+# def add_province(request):
+    
 #     if request.method == 'POST':
-#         form = MemberForm(request.POST, request.FILES)
+#         form = ProvinceForm(request.POST, request.FILES)
 #         if form.is_valid():
 #             form.save()
-#             return HttpResponseRedirect(reverse('Member List', args = []))
+#             return HttpResponse("Hello World, Done Sucessfully.")
 #     else:
-#         form = MemberForm()
-#     template_name = 'members/new_member.html'
+#         form = ProvinceForm()
+#     template_name = 'political_divisions/add_province.html'
 #     context = {
-#         'form':form
+#         'form':form,
 #     }
 #     return render(request, template_name, context)
 
+class ProvinceFormView(View):
+    form_class = ProvinceForm
+    initial = {'key':'value'}
+    template_name = 'political_divisions/add_province.html'
 
-def add_province(request):
-    
-    if request.method == 'POST':
-        form = ProvinceForm(request.POST, request.FILES)
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('Sucess'))
-    else:
-        form = ProvinceForm()
-    template_name = 'political_divisions/add_province.html'
-    context = {
-        'form':form,
-    }
-    return render(request, template_name, context)
+            return HttpResponse("Hello World, Done Sucessfully.")
+        context = {
+            'form':form,
+        }
+        return render(request,self.template_name, context)
+    
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        context = {
+            'form':form,
+        }
+        return render(request,self.template_name,context)
