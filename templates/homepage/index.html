@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Home
+{% endblock title %}
+
+
+{% block content %}
+<header id="front-hero">
+    <div class="election-grid">
+      <div class="election-width-two-thirds">
+        <h1>Welcome to {{ title }}</h1>
+        <p class="election-font-lead">The best place to browse for everything Election 2074, Nepal.
+          <br />
+          <b>Simple, authentic, faster</b>
+        </p>
+
+        <form class="election-search election-search-big">
+          <div role="search">
+            <label class="election-sr-only" for="search-field-big">Search {{ title }}</label>
+            <input id="search-field-big" type="search" name="search" placeholder="Search Election Portal">
+            <button type="submit">
+              <span class="election-search-submit-text">Search</span>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="popular election-width-one-third">
+        <h2>Popular on Election Portal</h2>
+        <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '5' %}
+          <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
+          </li>{% endif %}{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  
+<!-- Map -->
+  
+  <div class="election-grid">
+    <div class="borderline">
+    <div class="election-width-one-third">
+      <h1>More on Election Portal</h1>
+    </div>
+    <div class="election-width-one-third">
+      <h3>Most active</h3>
+      <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '6' %}
+        <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
+        </li>{% endif %}{% endfor %}
+      </ul>
+    </div></div>
+    <div class="election-width-one-third">
+      <div class="election-hero-callout election-section-dark">
+        <h2 style="text-align:center;"><span class="election-hero-callout-alt" id="countdown"></span>Local Elections</h2>
+        <a class="election-hero-link" href="#">Here's everything we know</a>
+      </div>
+    </div>
+  </div><br /><br />
+{% endblock content %}
+    
+    
