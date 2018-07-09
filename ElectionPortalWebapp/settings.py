@@ -42,6 +42,7 @@ MY_APPS =[
     'political_divisions',
     'political_parties',
     'results',
+    'homepage',
 
 ]
 
@@ -53,6 +54,8 @@ SYSTEM_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+
 ]
 INSTALLED_APPS = SYSTEM_APPS + THIRD_PARTY_APPS + MY_APPS
 
@@ -136,3 +139,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 
+    "static_outside_for_all", "electionportalwebapp", "static_root")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    # '/var/www/static/',
+]
