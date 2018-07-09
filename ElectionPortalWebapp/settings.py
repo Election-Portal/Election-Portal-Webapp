@@ -30,7 +30,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'gfklookupwidget',
+
+]
 
 MY_APPS =[
     'candidates',
