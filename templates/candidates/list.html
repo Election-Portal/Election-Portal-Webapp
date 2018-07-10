@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block title %}
+    All Candidates
+{% endblock title %}
+
+
+{% block content %}
+<div class="page-content">
+  <div class="election-grid">
+    <h1>Select a Candidate</h1> <br />
+  <div class="election-grid team">
+    {% for nominee in all_nominees %}
+    <a href="{% url 'NomineeDetail' pk=nominee.pk %}">{{ nominee.full_name | capfirst }}</a>
+  {% endfor %} <br />
+    <div class="election-grid">
+      <bold>Is Somebody missed?</bold>
+      <span>Add Them Here <a href="{% url 'AddNominee' %}">Add Candidates</a></span>
+    </div>
+  </div>
+</div>
+</div>
+<br />
+{% endblock content %}

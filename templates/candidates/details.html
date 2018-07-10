@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{nominee.full_name}}
+{% endblock title %}
+
+{% block content %}
+    <div class="page-content">
+      <div class="election-grid">
+        <div class="team-member">
+          <div class="election-grid">
+            <h1>{{ nominee.full_name | title }}</h1> <br />
+            <div class="election-width-one-third">
+              {% if infor.photo %}
+                <img src="{{ infor.photo.url}}" alt="Photo of {{ infor.name | title }}">
+              {% else %}
+                <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ nominee.full_name | title }} does not have a photo yet">
+              {% endif %}
+
+        	  <h3>Content</h3>
+	              <ul class="election-unstyled-list">
+                  <li>Zone:-{{ infor.zone | title }}</li>
+                  <li>District:-{{ infor.district | title }}</li>
+                  <li>Gender:-{{ infor.gender }}</li>
+                  <li>Date of Birth:-{{ nominee.dob }}</li>
+                  <!-- <li>Awards:-{{ nominee.awards }}</li> -->
+                  <li>Political Affiliation:- {{nominee.political_affiliation}}</li>
+                  <!-- <li>Academic Background:- {{nominee.academic_background}}</li> -->
+                  <li>Ideology:- {{nominee.ideology}}</li>
+                  
+                  {% if nominee.is_incumbent %}
+                      <li>Currently holds the post.</li>
+                  {% endif %}
+                      
+                </ul>
+
+            </div>
+            <div class="election-width-two-thirds">
+              <h2 id="academic_bacground">Academic Background</h2>
+                <div class="academic_background">{{ nominee.academic_background|safe }}</div>
+
+                <h2 id="awards">Awards</h2>
+                <div class="awards">{{ nominee.awards|safe }}</div>
+
+                <h2 id="biography">Biography</h2>
+                <div class="bio">{{ nominee.biography|safe }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+{% endblock content %}
