@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    All Political Parties
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+    
+<div class="page-content">
+    <div class="election-grid">
+      <h1>All Political Parties</h1> <br />
+      <div class="election-grid team">
+          {% for political_party in all_political_parties %}
+        <div class="election-width-one-fourth">
+          <a href="{% url 'PoliticalPartyDetail' political_party.pk %}">
+            <img src="{{ infor.logo.url }}" alt="Photo of {{political_party.name|title}}">
+          </a>
+          <div class="team member-name">
+            <a href="{% url 'PoliticalPartyDetail' political_party.pk %}"><strong>{{political_party.name|title}}</strong></a>
+          </div>
+          <div class="role">
+            <p>{{political_party.ideology|title}}</p>
+          </div>
+        </div>
+        {% endfor %}   <br />
+
+      </div>
+    </div>
+
+  </div>
+  <br />
+{% endblock content %}
+    

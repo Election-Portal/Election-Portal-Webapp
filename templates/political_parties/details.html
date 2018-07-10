@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    {{political_party.name|title}}
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="page-content">
+        <div class="election-grid">
+          <div class="team-member">
+            <div class="election-grid">
+              <h1>{{ political_party.name | title }}</h1> <br />
+              <div class="election-width-one-third">
+                {% if political_party.logo %}
+                  <img src="{{ political_party.logo.url}}" alt="Photo of {{ political_party.name | title }}">
+                {% else %}
+                  <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ political_party.name | title }} does not have a photo yet">
+                {% endif %}
+                <div class="role">
+                  <p>{{ political_party.ideology | title }}</p>
+                </div>
+  
+                <h3>Content</h3>
+                    <ul class="election-unstyled-list">
+                    <li>Established:- {{ political_party.founded_on }}</li>
+                    <li>Head of Party:- {{political_party.chief_of_party}}</li>
+                    <li>Seats in Pradesh Sabha:- {{political_party.seats_in_pradessabha}}</li>
+                    <li>Seats in Pratinidhi Sabha:- {{political_party.seats_in_pratinidhisabha}}</li>
+                    <li></li>
+                    <li></li>
+                  </ul>
+  
+              </div>
+              <div class="election-width-two-thirds">
+                <h2 id="biography">About</h2>
+                  <div class="bio">{{ political_party.about|safe }}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+{% endblock content %}
+    
+    
