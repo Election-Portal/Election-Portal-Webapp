@@ -43,6 +43,7 @@ MY_APPS =[
     'political_parties',
     'results',
     'homepage',
+    'issues',
 
 ]
 
