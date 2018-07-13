@@ -7,7 +7,7 @@ from electoral_constituencies.models import PradeshSabha, PratinidhiSabha
 class PradeshSabhaAdmin(admin.ModelAdmin):
     '''Admin View for PradeshSabha'''
 
-    list_display = ('name', 'winner', 'won_political_party')
+    list_display = ('name', 'province', 'district', 'winner', 'won_political_party')
     ordering = ('name',)
 
 
@@ -15,5 +15,5 @@ class PradeshSabhaAdmin(admin.ModelAdmin):
 class PratinidhiSabhaAdmin(admin.ModelAdmin):
     '''Admin View for PratinidhiSabha'''
 
-    list_display = ('name', 'winner', 'won_political_party')
+    list_display = ('name', 'province', 'district', 'winner', 'won_political_party')
     ordering = ('name',)

@@ -1,5 +1,5 @@
 from django.db import models
-from political_divisions.models import Province
+from political_divisions.models import Province, District
 from political_parties.models import PoliticalParty
 # Create your models here.
 
@@ -7,6 +7,7 @@ from political_parties.models import PoliticalParty
 
 class Sabha(models.Model):
     name = models.CharField("Name", max_length=50)
+    district = models.ForeignKey(District,on_delete=models.CASCADE, related_name="SabhaDistrictSet")
     province = models.ForeignKey(Province, related_name="sabha_province_set",on_delete=models.CASCADE)
     area = models.IntegerField()
     population = models.IntegerField()
