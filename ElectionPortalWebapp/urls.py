@@ -21,7 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('province/', include('political_divisions.urls')),
     path('candidates/', include('candidates.urls')),
-    path('parties/', include('political_parties.urls'), name = "PoliticalParties"),
+    path('parties/', include('political_parties.urls')),
+    path('constituencies/', include('electoral_constituencies.urls')),
     path('', include('homepage.urls'), name = "HomePage"),
 ]
 

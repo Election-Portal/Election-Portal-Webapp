@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Constituencies
+{% endblock title %}
+
+
+{% block extra_js %}
+<script src="{% static '/js/jquery.js' %}"></script>
+<script>
+
+        $(document).ready(function(){
+    
+            $("select[name='Province']").change(function(){
+                var value =  $(this).val();
+                var pselect = $("select[name='District']");
+    
+                $.ajax({
+                    method:"get",
+                    dataType:"json",
+                    url:'../../show-district-options/',
+                    data:{
+                    'Province':value
+                    },
+                    success:function(data){
+                        pselect.empty();
+                        $.each(data, function(index, value){
+                            pselect.append("<option value='"+value.pk+"'>"+value.name+"</option>");
+                        });
+                    },
+    
+                });
+            });
+    
+        });
+        </script>
+
+{% endblock extra_js %}
+    
+{% block content %}
+  <br>
+  <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h1>Explore</h1>
+      <p class="election-font-lead">We are committed to providing free, comprehensive, standardized, linked set of election data for Nepal.</p>
+    </div>
+  </div>
+  <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <form class="election-form">
+
+        <select name="Province" id="SelectedProvince">
+            <option value="" selected>Select Province</option>
+            {% for province in all_province %}
+            <option value="{{ province.name }}">{{ province.name | capfirst }}</option>
+            {% endfor %}
+        </select>
+        
+
+
+        <select name="District" id="SelectedDistrict">
+          <option value="" selected>Choose District</option>
+          {% for district in all_district %}
+          <option value="{{ district.id }}">{{ district.name | capfirst }}</option>
+          {% endfor %}
+        </select>
+
+        <input type="button" value="Submit" onclick="RedirecttoDistrict()" />
+
+        <script>
+          function RedirecttoDistrict() {
+            var province = document.getElementById("SelectedProvince");
+            var district = document.getElementById("SelectedDistrict");
+            var selected_province = province.options[province.selectedIndex].value;
+            var selected_district = district.options[district.selectedIndex].value;
+           
+            //var hold = document.getElementById("options");
+           // var selectedVal = hold.options[hold.selectedIndex].value;
+
+           window.location.replace("../../" + selected_province + "/" + selected_district + "/");
+           return false;
+          }
+        </script>
+      </form>
+    </div>
+  </div>
+  <div class="election-grid">
+      Pratinidhi Sabhas
+      <ul id="navigation">
+        {% for pratinidhi_sabha in filter_pratinidhi_sabhas %}
+        <li><a href="{% url 'PratinidhiSabhaDetails' pratinidhi_sabha.pk%}">{{ pratinidhi_sabha.name | capfirst }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    
+      Pradesh Sabhas
+      <ul id="navigation">
+        {% for pradesh_sabha in filter_pradesh_sabhas %}
+        <li><a href="{% url 'PradeshSabhaDetails' pradesh_sabha.pk %}">{{ pradesh_sabha.name | capfirst }}</a>
+        </li>
+        {% endfor %}
+    <br />
+  </div>
+  <br />
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{pratinidhi_sabha.name}}
+{% endblock title %}
+    
+
+{% block content %}
+    
+<div class="page-content">
+        <div class="election-grid">
+          <h1>{{ pratinidhi_sabha.name }}</h1> <br />
+          <div class="election-grid team">{% for infor in infor %}{% if dis.id == infor.district.id %}
+            <a href="#">{{ infor.name | capfirst }}</a>
+          {% endif %}{% endfor %} <br />
+<!--            <div class="election-grid">
+              <bold>Is You VDC or Municipality missed?</bold>
+              <span>Add Them Here <a href="#">Add VDC or Municipality</a></span>
+            </div>
+          </div>
+        -->
+
+          District:- {{pratinidhi_sabha.district}} <br/>
+          Province:- {{pratinidhi_sabha.province}} <br/>
+          Area    :- {{pratinidhi_sabha.area}} sq. km <br/>
+          Population:- {{pratinidhi_sabha.population}}<br/>
+          Voters:- {{pratinidhi_sabha.voters}} <br/>
+          Is Marginal:- {{pratinidhi_sabha.is_marginal}}<br/>
+          Parliamentiarian:- {{pratinidhi_sabha.winner}}<br/>
+          Rulling Party:- <a href="{% url 'PoliticalPartyDetail' pratinidhi_sabha.won_political_party.pk %}">{{pratinidhi_sabha.won_political_party}}</a><br/>
+          Pradesh Sabha Ka:- <a href="{% url 'PradeshSabhaDetails' pratinidhi_sabha.pradeshsabha_ka.pk %}">{{pratinidhi_sabha.pradeshsabha_ka}}</a><br/>
+          Pradesh Sabha Kha:- <a href="{% url 'PradeshSabhaDetails' pratinidhi_sabha.pradeshsabha_kha.pk %}">{{pratinidhi_sabha.pradeshsabha_kha}}</a><br/>
+        </div>
+      </div>
+      <br />
+{% endblock content %}
+

@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.views import View
 from political_divisions.forms import ProvinceForm
+from political_divisions.models import Province, District
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -43,3 +45,19 @@ class ProvinceFormView(View):
             'form':form,
         }
         return render(request,self.template_name,context)
+
+def show_district_options(request): 
+    '''
+    This function will show all the availaible districts 
+    for the given province.
+
+    '''
+    province_name = request.GET.get('Province')
+    province_id = Province.objects.get(name=province_name).id
+    print(province_id)
+    districts = [{"data":"nothing found"}]
+    if province_id:
+        districts = District.objects.filter(province=province_id
+                                            ).values("pk", "name")
+        districts = list(districts)
+    return JsonResponse(districts, safe=False)

@@ -23,3 +23,16 @@ class Province(models.Model):
         return self.name
     
 
+class District(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    population = models.IntegerField(verbose_name="Total Population")
+    voters = models.IntegerField(verbose_name="Total Voters")
+    area = models.IntegerField()
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
