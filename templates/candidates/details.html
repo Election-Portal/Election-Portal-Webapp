@@ -22,7 +22,7 @@
         	  <h3>Content</h3>
 	              <ul class="election-unstyled-list">
                   <li>Zone:-{{ infor.zone | title }}</li>
-                  <li>District:-{{ infor.district | title }}</li>
+                  <li>District:-{{ nominee.district | title }}</li>
                   <li>Gender:-{{ infor.gender }}</li>
                   <li>Date of Birth:-{{ nominee.dob }}</li>
                   <!-- <li>Awards:-{{ nominee.awards }}</li> -->
@@ -45,7 +45,14 @@
                 <div class="awards">{{ nominee.awards|safe }}</div>
 
                 <h2 id="biography">Biography</h2>
-                <div class="bio">{{ nominee.biography|safe }}</div>
+                <div class="bio">{{ nominee.biography|safe }}
+                  <!-- delete this -->
+                  Starting as a Jumper, he did not jump.</br>
+                  Starting as a fighter, he did not fight,</br>
+                  
+                  Leo Messi awards of Best football playing,</br>
+                  Neymar AWard of best divjing in the workd case scenario.
+                </div>
             </div>
           </div>
         </div>

@@ -16,7 +16,11 @@
           {% for political_party in all_political_parties %}
         <div class="election-width-one-fourth">
           <a href="{% url 'PoliticalPartyDetail' political_party.pk %}">
-            <img src="{{ infor.logo.url }}" alt="Photo of {{political_party.name|title}}">
+            {% if infor.photo %}
+            <img src="{{ infor.photo.url}}" alt="Photo of {{ political_party.name | title }}">
+          {% else %}
+            <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ nominee.full_name | title }} does not have a photo yet">
+          {% endif %}
           </a>
           <div class="team member-name">
             <a href="{% url 'PoliticalPartyDetail' political_party.pk %}"><strong>{{political_party.name|title}}</strong></a>
