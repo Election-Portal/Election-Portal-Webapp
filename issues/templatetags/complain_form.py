@@ -14,5 +14,6 @@ def show_complain_form(request):
                 complain_form.save()
                 return HttpResponseRedirect(reverse('HomePage'))
     else:
-        complain_form = ComplainForm()
+        current_url = request.build_absolute_uri
+        complain_form = ComplainForm(initial={'url':current_url})
     return {'complain_form':complain_form}
