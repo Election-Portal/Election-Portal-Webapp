@@ -34,7 +34,7 @@ def nominees_list(request):
 def nominee_details(request, pk):
     # Change PK with slug
     nominee = get_object_or_404(Nominee,pk=pk)
-    template_name = "candidates/details.html"
+    template_name = "candidates/detail.html"
     context ={
         "nominee":nominee,
     } 

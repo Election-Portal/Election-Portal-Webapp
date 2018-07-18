@@ -45,7 +45,7 @@ def political_parties_list(request):
 def political_parties_detail(request, pk):
     # Change PK with slug
     political_party = get_object_or_404(PoliticalParty,pk=pk)
-    template_name = "political_parties/details.html"
+    template_name = "political_parties/detail.html"
     context = {
         "political_party":political_party,
     }
