@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    Articles
+{% endblock title %}
+
+
+
+{% block content %}
+    
+
+
+    <div class="page-content">
+        <div class="election-grid">
+          <h1>Select a Candidate</h1> <br />
+        <div class="election-grid team">
+            {% for article in articles  %}
+                <a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
+            {% endfor %}
+        </div>
+      </div>
+      </div>
+      <br />
+        
+{% endblock content %}
+    
+    

@@ -23,6 +23,7 @@ urlpatterns = [
     path('candidates/', include('candidates.urls')),
     path('parties/', include('political_parties.urls')),
     path('constituencies/', include('electoral_constituencies.urls')),
+    path('blog/', include('blog.urls')),
     path('', include('homepage.urls'), name = "HomePage"),
 ]
 

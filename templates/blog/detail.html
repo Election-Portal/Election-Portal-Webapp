@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{article.pk}}
+{% endblock title %}
+
+
+{% block content %}
+<div class="page-content">
+    <div class="election-grid">
+      <h1>{{article.title}}</h1> <br />
+    <div class="election-grid team">
+            <!-- Space for Featured Image-->
+            {{article.body}}</br>
+            {{article.author}}</br>
+            {{article.time_read}}</br>
+            {{article.published_on}}</br>
+            {{article.category}}</br>
+    </div>
+  </div>
+  </div>
+  <br />
+{% endblock content %}
+    
+    

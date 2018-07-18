@@ -1,4 +1,5 @@
 {% load static %}
+{% load complain_form %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +40,7 @@
     {% endblock content %}
         
     
-
-    {% include 'include/feedback.html' %}
+    {% show_complain_form request %}
     {% include 'include/extended_footer.html' %}
     {% include 'include/footer.html' %}
     {% include 'include/script.html' %}       
