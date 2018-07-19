@@ -2194,23 +2194,20 @@ body {
     body {
       padding-top: 100px; } }
 
-/* Navigation bar styles */
 nav.nav-topnav {
   transition: all 0.25s ease;
-  background-color: #212121;
+  background-color: rgba(11, 12, 12, 0.9);
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 1; }
-  nav.nav-topnav.scrolled {
-    display: none; }
+  right: 0; }
   @media only screen and (min-width: 800px) {
     nav.nav-topnav.scrolled .nav-title a.nav-title-logo img {
-      height: 42px;
-      width: 40px; }
+      height: 40px;
+      width: 42px; }
     nav.nav-topnav.scrolled .nav-title a.nav-title-text {
-      padding: 10px 0 0 0; }
+      padding: 10px 0 0 0;
+      font-size: 30px; }
     nav.nav-topnav.scrolled ul.nav-list li a {
       margin: 0; }
     nav.nav-topnav.nav-transparent {
@@ -2237,8 +2234,8 @@ nav.nav-topnav {
     nav.nav-topnav .nav-title a.nav-title-text {
       transition: all 0.25s ease;
       display: inline-block;
-      padding: 14px 0 0 0;
-      font-size: 30px;
+      padding: 24px 0 0 0;
+      font-size: 20px;
       font-weight: lighter;
       color: white; }
       @media only screen and (min-width: 800px) {
