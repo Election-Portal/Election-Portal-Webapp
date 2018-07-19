@@ -7,10 +7,11 @@
 
 
 {% block content %}
+<div id="main-content">
 <header id="front-hero">
     <div class="election-grid">
       <div class="election-width-two-thirds">
-        <h1>Welcome to {{ title }}</h1>
+        <h1>Welcome to Election Portal</h1>
         <p class="election-font-lead">The best place to browse for everything Election 2074, Nepal.
           <br />
           <b>Simple, authentic, faster</b>
@@ -31,12 +32,6 @@
         <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '5' %}
           <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
           </li>{% endif %}{% endfor %}
-          <li><a href = "#">ठुला दलहरुले चुनाबमा सहभागिता नजनाउने |</a></li>
-          <li><a href = "#">बम बिस्फोटले चुनाब हुनेमा संका ।</a></li>
-          <li><a href = "#">चुनाब नतिजा आउन अझै समय लाग्ने ।</a></li>
-          <li><a href = "#">चुनाब पछि नया सरकार बन्ने पक्का ।</a></li>
-
-
         </ul>
       </div>
     </div>
@@ -52,12 +47,6 @@
       <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '5' %}
         <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
         </li>{% endif %}{% endfor %}
-        <li><a href = "#">मतपत्रमा छाप लगाउने सहि तरिका</a></li>
-        <li><a href = "#">निवाचन आचारसंहिता</a></li>
-        <li><a href = "#">Voting Takes Less Time Than You Imagine.</a></li>
-        <li><a href = "#">चुनाब पछि नया सरकार बन्ने पक्का ।</a></li>
-
-
       </ul>
     </div>
     <div class="election-width-one-third">
@@ -65,10 +54,6 @@
       <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '6' %}
         <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
         </li>{% endif %}{% endfor %}
-        <li><a href = "#">ठुला दलहरुले चुनाबमा सहभागिता नजनाउने |</a></li>
-        <li><a href = "#">बम बिस्फोटले चुनाब हुनेमा संका ।</a></li>
-        <li><a href = "#">चुनाब नतिजा आउन अझै समय लाग्ने ।</a></li>
-        <li><a href = "#">चुनाब पछि नया सरकार बन्ने पक्का ।</a></li>
       </ul>
     </div></div>
     <div class="election-width-one-third">

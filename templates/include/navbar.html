@@ -2,18 +2,18 @@
 <nav class="nav-topnav" id="nav-primary">
   <div class="election-grid-full">
     <div class="nav-title">
-      <a class="nav-title-logo" href="{% url 'HomePage' %}"><img src="{% static '/img/ng_logo.png' %}" alt="Nepal Election 2074"></a>
+      <a class="nav-title-logo" href="{% url 'HomePage' %}"><img src="{% static '/img/logo_sm.png' %}" alt="Nepal Election 2074"></a>
       <a class="nav-title-text" href="{% url 'HomePage' %}"><b>Election Portal</b></a>
     </div>
     <div class="nav-toggle">
       <a id="nav-toggle-button" href="javascript:void(0);">&#9776;</a>
     </div>
     <ul class="nav-list election-unstyled-list">
-      <li><a href="{% url 'ArticlesList' %}">Blog</a></li>
-        <li><a href="{% url 'AllConstituences' %}">Constituencies</a></li>
       <li><a href="#">Results</a></li>
+      <li><a href="{% url 'AllConstituences' %}">Discover</a></li>
+      <li><a href="{% url 'AllNominees' %}">Candidate</a></li>
       <li><a href="{% url 'AllPoliticalParties'%}">Parties</a></li>
-      <li><a href="{% url 'AllNominees' %}">Candidates</a></li>
+      <li><a href="{% url 'ArticlesList' %}">Blog</a></li>
       <!-- <li><a href="#">Pratinidhi Sabhas</a></li> -->
       <!-- <li><a href="#">Get Involved</a></li> -->
     </ul>
