@@ -14,6 +14,18 @@
 
 
     <div class="page-content">
+
+    
+    {% if user.is_authenticated %}
+    <div class="election-grid">
+        <bold>Wanna write a blog?</bold>
+        <span>Add Them Here <a href="{% url 'AddArticle' %}">New Blog</a></span>
+    </div>
+        
+    {% endif %}
+        
+
+
         <div class="election-grid">
           <h1>Our Blog Section</h1> <br />
         <div class="election-grid team">
@@ -22,7 +34,7 @@
                 <a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
             {% endfor %}
         </div>
-      </div>
+        </div>
       </div>
       <br />
         
