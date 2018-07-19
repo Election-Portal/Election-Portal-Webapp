@@ -10,4 +10,7 @@ class ComplainForm(forms.ModelForm):
 
         model = Complain
         fields = "__all__"
+        widgets = {
+        'url': forms.TextInput(attrs={'disabled': True}),
+    }
 
