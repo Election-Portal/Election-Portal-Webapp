@@ -9,6 +9,15 @@
 
 {% block content %}
 <div class="page-content">
+
+    {% if user.is_authenticated %}
+    <div class="election-grid">
+        <span><a href="{% url 'UpdateArticle' pk=article.pk %}">Update this blog.</a></span>
+    </div>
+        
+    {% endif %}
+
+
     <div class="election-grid">
       <h1>{{article.title}}</h1> <br />
     <div class="election-grid team">
