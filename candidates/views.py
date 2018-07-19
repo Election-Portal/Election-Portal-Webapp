@@ -2,11 +2,12 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from candidates.forms import NomineeForm
 from candidates.models import Nominee
 from django.views import View
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 # Function Based View
-
+@login_required
 def add_nominee(request):
     if request.method == "POST":
         form = NomineeForm(request.POST, request.FILES)
