@@ -6,11 +6,14 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
 from gfklookupwidget import fields
+
+from results.models import Result
 # Create your models here.
 
 
 class Nominee(models.Model):
     full_name = models.CharField("Full Name", max_length=50)
+    result = models.ForeignKey(Result, on_delete=models.CASCADE, related_name="NomineeResultSet")
     # Further work required. candidacy_to must include option for the location rather than the model name.
     limit = models.Q(app_label = 'electoral_constituencies', model = 'pradeshsabha') | models.Q(app_label = 'electoral_constituencies', model = 'pratinidhisabha')
     Sabha = models.ForeignKey(ContentType, limit_choices_to=limit,on_delete=models.CASCADE)
