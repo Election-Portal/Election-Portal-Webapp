@@ -12,8 +12,8 @@
     <div class="election-grid">
       <h1>{{article.title}}</h1> <br />
     <div class="election-grid team">
-            <!-- Space for Featured Image-->
-            {{article.body|safe}}</br>
+      <img src={{article.featured_image.url}}>
+      {{article.body|safe}}</br>
             {{article.author}}</br>
             {{article.time_read}}</br>
             {{article.published_on}}</br>

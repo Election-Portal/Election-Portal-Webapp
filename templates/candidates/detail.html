@@ -13,8 +13,8 @@
           <div class="election-grid">
             <h1>{{ nominee.full_name | title }}</h1> <br />
             <div class="election-width-one-third">
-              {% if infor.photo %}
-                <img src="{{ infor.photo.url}}" alt="Photo of {{ infor.name | title }}">
+              {% if nominee.image %}
+                <img src="{{ nominee.image.url}}" alt="Photo of {{ infor.name | title }}">
               {% else %}
                 <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ nominee.full_name | title }} does not have a photo yet">
               {% endif %}

@@ -13,6 +13,7 @@ from results.models import Result
 
 class Nominee(models.Model):
     full_name = models.CharField("Full Name", max_length=50)
+    image = models.ImageField(upload_to = 'candidate_image')
     result = models.ForeignKey(Result, on_delete=models.CASCADE, related_name="NomineeResultSet", null=True, blank=True)
     # Further work required. candidacy_to must include option for the location rather than the model name.
     limit = models.Q(app_label = 'electoral_constituencies', model = 'pradeshsabha') | models.Q(app_label = 'electoral_constituencies', model = 'pratinidhisabha')
