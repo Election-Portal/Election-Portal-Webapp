@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Results
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="page-content">
+    <div class="election-grid">
+      <h1>Results</h1> <br />
+    <div class="election-grid team">
+        {% for result in all_results  %}
+            <a href="#">{{result}}</a></br>
+        {% endfor %}
+    </div>
+  </div>
+  </div>
+  <br />
+{% endblock content %}
+    
+    

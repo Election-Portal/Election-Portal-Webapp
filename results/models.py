@@ -8,16 +8,19 @@ ELECTION_YEAR_CHOICES = (
 
 class Result(models.Model):
     year = models.CharField(max_length=4, choices=ELECTION_YEAR_CHOICES)
+    total_votes = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.year
+        for nominee in self.NomineeResultSet.all():
+            full_name = nominee.full_name
+        return "{} - {}-{}".format(full_name, self.year,str(self.total_votes))
     
     class Meta:
         verbose_name="Result"
         verbose_name_plural="Results"
 
 class PratinidhiSabhaResult(Result):
-    pratinidhisabha = models.ForeignKey(PratinidhiSabha, on_delete=models.CASCADE)
+    #pratinidhisabha = models.ForeignKey(PratinidhiSabha, on_delete=models.CASCADE)
     is_declared = models.BooleanField(default=False)
 
     def __str__(self):
@@ -29,7 +32,7 @@ class PratinidhiSabhaResult(Result):
     
 
 class PradeshSabhaResult(Result):
-    pradeshsabha = models.ForeignKey(PradeshSabha, on_delete=models.CASCADE)
+    #pradeshsabha = models.ForeignKey(PradeshSabha, on_delete=models.CASCADE)
     is_declared = models.BooleanField(default=False)
 
     def __str__(self):
