@@ -4,7 +4,7 @@ from django.views import View
 from political_divisions.forms import ProvinceForm
 from political_divisions.models import Province, District
 from django.http import JsonResponse
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
@@ -24,7 +24,7 @@ from django.http import JsonResponse
 #     }
 #     return render(request, template_name, context)
 
-class ProvinceFormView(View):
+class ProvinceFormView(LoginRequiredMixin, View):
     form_class = ProvinceForm
     initial = {'key':'value'}
     template_name = 'political_divisions/add_province.html'

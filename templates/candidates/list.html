@@ -14,12 +14,8 @@
   <div class="election-grid team">
     {% for nominee in all_nominees %}
     <a href="{% url 'NomineeDetail' pk=nominee.pk %}">{{ nominee.full_name | capfirst }}</a>
+    <img src={{nominee.image.url}}>
   {% endfor %} <br />
-  <!-- We will add stuffs in the database through admin only Updated by Nischal-->
-    <!-- <div class="election-grid">
-      <bold>Is Somebody missed?</bold>
-      <span>Add Them Here <a href="{% url 'AddNominee' %}">Add Candidates</a></span>
-    </div> -->
   </div>
 </div>
 </div>

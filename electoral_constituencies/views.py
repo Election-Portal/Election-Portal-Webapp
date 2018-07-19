@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from electoral_constituencies.models import PradeshSabha, PratinidhiSabha
 from political_divisions.models import Province, District
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 

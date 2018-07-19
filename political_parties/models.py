@@ -5,6 +5,7 @@ from django.db import models
 
 class PoliticalParty(models.Model):
     name = models.CharField("Name of Party", max_length=50)
+    party_logo = models.ImageField(upload_to="party_logo")
     founded_on = models.DateField("Date of Establishment", auto_now=False, auto_now_add=False)
     ideology = models.TextField()
     seats_in_pradessabha = models.IntegerField()

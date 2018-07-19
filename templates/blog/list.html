@@ -3,8 +3,9 @@
 
 
 {% block title %}
-    Articles
+    Blog
 {% endblock title %}
+
 
 
 
@@ -14,9 +15,10 @@
 
     <div class="page-content">
         <div class="election-grid">
-          <h1>Select a Candidate</h1> <br />
+          <h1>Our Blog Section</h1> <br />
         <div class="election-grid team">
             {% for article in articles  %}
+                <img src={{article.featured_image.url}}>
                 <a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
             {% endfor %}
         </div>

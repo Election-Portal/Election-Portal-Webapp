@@ -16,7 +16,7 @@ class Complain(models.Model):
     url = models.URLField()
     error_found = models.CharField("Error you found(Be Brief)", max_length=60)
     steps_to_reproduce = models.TextField("How to reproduce the error?")
-    #screenshot
+    #screenshot = models.ImageField(upload_to="issues_screenshot")
 
 
     class Meta:

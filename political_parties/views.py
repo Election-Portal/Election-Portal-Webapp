@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404, HttpRes
 from political_parties.models import PoliticalParty
 from political_parties.forms import PoliticalPartyForm
 from django.urls import reverse
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
+# Create your views here.
+@login_required
 def add_political_party(request):
     if request.method == "POST":
         form = PoliticalPartyForm(request.POST, request.FILES)
