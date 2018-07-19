@@ -8,9 +8,18 @@
 
 
 {% block content %}
-<div class = "election-grid">
+<div class="election-grid">
+	   <div class="election-width-two-thirds">
+      <h1>Login</h1>
+    </div><br /><br /><br />
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<div class="election-alert election-alert-error" role="alert">
+  <div class="election-alert-body">
+    <h3 class="election-alert-heading">Buzz, Error!</h3>
+    <p class="election-alert-text">Your username or password is incorrect.</p>
+  </div>
+</div>
+
 {% endif %}
 
 {% if next %}
@@ -18,7 +27,6 @@
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
     {% else %}
-    <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
 
@@ -42,6 +50,7 @@
 
 {# Assumes you setup the password_reset view in your URLconf #}
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-</div>
+</div><br /><br /><br />
 {% endblock content %}
+
     
