@@ -1,51 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
 {% block title %}
     Blog
 {% endblock title %}
-
-
-
-
 {% block content %}
-    
-
-
-    <div class="page-content">
-
-    
-    {% if user.is_authenticated %}
+<div class="page-content">
+  {% if user.is_authenticated %}
     <div class="election-grid">
-        <bold>Wanna write a blog?</bold>
-        <span>Add Them Here <a href="{% url 'AddArticle' %}">New Blog</a></span>
+      <div class="election-alert election-alert-info" >
+        <div class="election-alert-body">
+          <h3 class="election-alert-heading">Since you've have an acess...</h3>
+          <p class="election-alert-text">You may want to add something amazing here. You may do it so <a href="{% url 'AddArticle' %}">here</a>.</p>
+        </div>
+      </div>
     </div>
+    <br /><br />
+  {% endif %}
         
-    {% endif %}
-        
-
 <section class="our-work blog">
   <div class="election-grid">
-    <div class="election-width-one-whole">
+    <div class="election-width-two-thirds">
       <h2>Our blog</h2>
-      <p class="page-width-70">
+      <p class="election-font-lead">
         Read about our work, our team, some of our most recent accomplishments and beautiful stories we've read on the Internet.
       </p>
     </div>
 
     {% for article in articles  %}
-      <div class="election-width-one-third story blog-item">
-        <a href="{% url 'ArticleDetail' article.pk %}">
-          <div class="blog-image" style="background-image:url({{article.featured_image.url}})" title="{{entry.image_description}}"></div>
-        </a>
-        <h3><a href="{% url 'ArticleDetail' article.pk %}">{{ article.title }}</a></h3>
-        {{article.body|truncatechars:125}}
-        <p><a class="read-more" title="Read More"><a href="{% url 'ArticleDetail' article.pk %}">Read more...</a></p>
-      </div>
-        {% endfor %}
-        </div>
-        <br /><br />
+    <div class="election-width-one-third story blog-item">
+      <a href="{% url 'ArticleDetail' article.pk %}">
+        <div class="blog-image" style="background-image:url({{article.featured_image.url}})" title="{{entry.image_description}}"></div>
+      </a>
+      <h3><a href="{% url 'ArticleDetail' article.pk %}">{{ article.title }}</a></h3>
+      {{article.body|truncatechars:125}}
+      <p><a class="read-more" title="Read More" href="{% url 'ArticleDetail' article.pk %}">Read more...</a></p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+<br /><br />
+</div>
 {% endblock content %}
-    
-    
