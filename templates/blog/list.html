@@ -25,19 +25,25 @@
     {% endif %}
         
 
+      <section class="our-work blog">
+  <div class="election-grid">
+    <div class="election-width-one-whole">
+      <h2>Our blog</h2>
+      <p class="page-width-70">
+        Read about our work, our team, some of our most recent accomplishments and beautiful stories we've read on the Internet.
+      </p>
+    </div>
 
-        <div class="election-grid">
-          <h1>Our Blog Section</h1> <br />
-        <div class="election-grid team">
-            {% for article in articles  %}
-                <img src={{article.featured_image.url}}>
-                <a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
-            {% endfor %}
-        </div>
-        </div>
+    {% for article in articles  %}
+      <div class="election-width-one-third story blog-item">
+        <a href="{% url 'ArticleDetail' article.pk %}">
+          <div class="blog-image" style="background-image:url({{article.featured_image.url}})" title="{{entry.image_description}}"></div>
+        </a>
+        <h3><a href="{% url 'ArticleDetail' article.pk %}">{{ article.title }}</a></h3>
       </div>
-      <br />
-        
+        {% endfor %}
+        </div>
+        <br /><br />
 {% endblock content %}
     
     
