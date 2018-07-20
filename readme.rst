@@ -65,7 +65,7 @@ Requirements.txt
 
 This file consist all the dependencies of this app, for eg: django, pytz, PIL etc. To install all the dependencies, just type::
     
-    pip install -r Requirements.txt
+    pip install -r requirements.txt
 
 Make Sure You have **active internet connection**
 
@@ -86,7 +86,7 @@ Now, All our dependencies are fullfilled.
     python manage runserver
 
 #. `Click Here To Check If All Things Are Ready
-.. _Click Here To Check If All Things Are Ready: http://127.0.0.1:8000/members/
+.. _Click Here To Check If All Things Are Ready: http://127.0.0.1:8000/
 
 This will install all the dependencies in your virtualenv. You can check this at site-packages folder of your virtualenv.
 
