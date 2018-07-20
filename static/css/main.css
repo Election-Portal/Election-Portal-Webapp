@@ -2342,6 +2342,9 @@ a[id]:not([href]), a[name]:not([href]) {
       .popular h2 {
         font-size: 12px; } }
 
+.join {
+  margin-bottom: -3em;
+}
 .team {
   text-align: center; }
 
