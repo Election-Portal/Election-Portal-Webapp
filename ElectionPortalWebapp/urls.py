@@ -27,6 +27,7 @@ urlpatterns = [
     path('results/', include('results.urls')),
     path('', include('homepage.urls'), name = "HomePage"),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('search/', include('search.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

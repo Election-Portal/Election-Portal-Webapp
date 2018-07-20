@@ -11,9 +11,9 @@ class Result(models.Model):
     total_votes = models.IntegerField(default=0)
 
     def __str__(self):
-        for nominee in self.NomineeResultSet.all():
-            full_name = nominee.full_name
-        return "{} - {}-{}".format(full_name, self.year,str(self.total_votes))
+        # for nominee in self.NomineeResultSet.all():
+        #     full_name = nominee.full_name
+        return "{}-{}".format(self.year, str(self.total_votes))
     
     class Meta:
         verbose_name="Result"

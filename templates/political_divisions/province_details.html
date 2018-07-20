@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+    {{province.name|title}}
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="page-content">
+        <div class="election-grid">
+          <div class="team-member">
+            <div class="election-grid">
+              <h1>{{ province.name | title }}</h1> <br />
+              <div class="election-width-one-third">
+                {% if province.image %}
+                  <img src="{{ political_party.party_logo.url}}" alt="Photo of {{ political_party.name | title }}">
+                {% else %}
+                  <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ political_party.name | title }} does not have a photo yet">
+                {% endif %}
+                <div class="role">
+                  <p>{{ province.formation_date }}</p>
+                </div>
+  
+                <h3>Content</h3>
+                    <ul class="election-unstyled-list">
+                    <li>Capital City:- {{ proviince.capital_city }}</li>
+                    <li>Area:- {{province.area}}</li>
+                    <li>Chief Minister:- {{province.chief_minister}}</li>
+                    <li>Speaker:- {{province.speaker}}</li>
+                    <li>Governor:- {{province.governor}}</li>
+                    <li></li>
+                  </ul>
+  
+              </div>
+              <div class="election-width-two-thirds">
+                <h2 id="biography">About</h2>
+                  <div class="bio">{{ political_party.about|safe }}</div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+{% endblock content %}
+    
+    

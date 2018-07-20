@@ -45,6 +45,7 @@ MY_APPS =[
     'homepage',
     'issues',
     'blog',
+    'search',
 
 ]
 

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Result for {{query_string}}
+{% endblock title %}
+
+
+
+{% block content %}
+<div class = "election-grid">
+{% if all_provinces %}
+
+    
+    {% for province in all_provinces  %}
+        <a href="{% url 'ProvinceDetails' province.pk %}">{{province.name| capfirst}}</a>
+    {% endfor %}
+        
+{% endif %}
+
+
+{% if all_candidates %}
+    
+    {% for candidate in all_candidates  %}
+    <a href="{% url 'NomineeDetail' pk=candidate.pk %}">{{ candidate.full_name | capfirst }}</a>
+
+    {% endfor %}
+        
+
+{% endif %}
+    
+    
+
+{% if all_pratinidhi_sabha %}
+
+
+{% for pratinidhi_sabha in all_pratinidhi_sabha  %}
+<a href="{% url 'PratinidhiSabhaDetails' pratinidhi_sabha.pk%}">{{ pratinidhi_sabha.name | capfirst }}</a>
+{% endfor %}
+    
+
+{% endif %}
+
+
+{% if all_pradesh_sabha %}
+
+{% for pradesh_sabha in all_pradesh_sabha  %}
+<a href="{% url 'PradeshSabhaDetails' pradesh_sabha.pk%}">{{ pradesh_sabha.name | capfirst }}</a>
+
+{% endfor %}
+    {% endif %}
+    
+
+{% if all_political_parties %}
+{% for political_party in all_political_parties %}
+        <div class="election-width-one-fourth">
+          <a href="{% url 'PoliticalPartyDetail' political_party.pk %}">
+            {% if political_party.party_logo %}
+            <img src="{{ political_party.party_logo.url}}" alt="Photo of {{ political_party.name | title }}">
+          {% else %}
+            <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ political_party.name | title }} does not have a photo yet">
+          {% endif %}
+          </a>
+          <div class="team member-name">
+            <a href="{% url 'PoliticalPartyDetail' political_party.pk %}"><strong>{{political_party.name|title}}</strong></a>
+          </div>
+          <div class="role">
+            <p>{{political_party.ideology|title}}</p>
+          </div>
+        </div>
+        {% endfor %}   <br />
+
+{% endif %}
+
+    
+</div>      
+{% endblock content %}
+    
+    

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, HttpResponseRedirect, HttpResponse, get_object_or_404
 from django.urls import reverse
 from django.views import View
 from political_divisions.forms import ProvinceForm
@@ -7,7 +7,13 @@ from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
-
+def province_details(request, pk):
+    province = get_object_or_404(Province, pk=pk)
+    template_name = "political_divisions/province_details.html"
+    context = {
+        "province":province,
+    }
+    return render(request, template_name, context)
 
 # def add_province(request):
     
