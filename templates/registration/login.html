@@ -9,9 +9,7 @@
 
 {% block content %}
 <div class="election-grid">
-	   <div class="election-width-two-thirds">
-      <h1>Login</h1>
-    </div><br /><br /><br />
+
 {% if form.errors %}
 <div class="election-alert election-alert-error" role="alert">
   <div class="election-alert-body">
@@ -30,7 +28,10 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
+<form method="post" action="{% url 'login' %}" class="election-drop_text">
+  <fieldset>
+    <legend class="usa-drop_text">Sign in</legend>
+    <span>or <a href="javascript:void(0);">create an account</a></span>
 {% csrf_token %}
 
 <div>

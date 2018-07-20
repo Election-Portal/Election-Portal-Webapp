@@ -12,22 +12,31 @@
 
     {% if user.is_authenticated %}
     <div class="election-grid">
-        <bold>Is someone missed?</bold>
-        <span>Add Them Here <a href="{% url 'AddNominee' %}">New Candidate</a></span>
+        <bold>Is someone missing?</bold>
+        <span>Add them Here <a href="{% url 'AddNominee' %}">New Candidate</a></span>
     </div>
         
     {% endif %}
 
 
-  <div class="election-grid">
-    <h1>Select a Candidate</h1> <br />
-  <div class="election-grid team">
-    {% for nominee in all_nominees %}
-    <a href="{% url 'NomineeDetail' pk=nominee.pk %}">{{ nominee.full_name | capfirst }}</a>
-    <img src={{nominee.image.url}}>
-  {% endfor %} <br />
-  </div>
-</div>
+<ul class="team election-unstyled-list">
+{% for nominee in all_nominees %}
+  <li>
+    <a href="{% url 'NomineeDetail' pk=nominee.pk %}">
+      {% if nominee.image %}
+        <img src="{{nominee.image.url}}" alt="Photo of {{ nominee.full_name }}">
+      {% else %}
+        <img src="{% url 'home' %}static/img/noimage.png" alt="Placeholder Nepal Government logo since {{ nominee.full_name }} does not have a photo yet">
+      {% endif %}
+    </a>
+    <div class="member-name">
+      <a href="{% url 'NomineeDetail' pk=nominee.pk %}">{{ nominee.full_name | capfirst }}</a>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+
 </div>
 <br />
 {% endblock content %}
