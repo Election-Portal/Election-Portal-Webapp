@@ -2404,6 +2404,12 @@ a[id]:not([href]) {
     text-align: center;
     color: #fff; }
 
+.join-button-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: -3em;
+}
+
 .join-button {
   height: 60px;
   width: 200px;
