@@ -17,8 +17,6 @@
             <div class="election-width-one-third">
               {% if infor.photo %}
                 <img src="{{ infor.photo.url}}" alt="Photo of {{ infor.name | title }}">
-              {% else %}
-                <img src="{% url 'home' %}static/img/noimage.png" alt="Placeholder Government of Nepal logo since {{ infor.name | title }} does not have a photo yet">
               {% endif %}
 
             <h3>Content</h3>

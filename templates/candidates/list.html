@@ -9,12 +9,11 @@
 
 {% block content %}
 <div class="page-content">
-
+<div class="election-grid">
     {% if user.is_authenticated %}
-    <div class="election-grid">
+
         <bold>Is someone missing?</bold>
         <span>Add them Here <a href="{% url 'AddNominee' %}">New Candidate</a></span>
-    </div>
         
     {% endif %}
 
