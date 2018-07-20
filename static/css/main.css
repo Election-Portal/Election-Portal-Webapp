@@ -2504,7 +2504,85 @@ a[id]:not([href]) {
       margin :10px 0px;
       float:left;
   }
-  
+
+.post-title{
+    font-size:42px;
+    letter-spacing:-1px;
+    line-height:1.6
+}
+@media screen and (max-width: 800px){
+    .post-title{
+        font-size:36px
+    }
+}
+section.site-album{
+    width:100%;
+    font-size:0;
+    background-color:#56A8DF;
+    overflow:hidden
+}
+section.site-album .album-row{
+    width:150%;
+    position:static;
+    left:-25%;
+    margin:auto;
+    height:160px;
+    overflow:hidden
+}
+section.site-album img{
+    display:inline-block;
+    width:245px;
+    height:160px
+}
+section.our-work .story,section.our-work .story-more{
+    display:block;
+    padding:0 20px;
+    font-size:.85em;
+    text-align:left
+}
+section.our-work .story{
+    margin-top:5rem
+}
+section.our-work .story img{
+    max-height:170px;
+    border-top:6px solid #DC0614;
+    padding-top:8px
+}
+section.our-work .story .project-link a{
+    text-decoration:none
+}
+section.our-work .story .project-link a:hover{
+    text-decoration:underline
+}
+section.our-work .story-more{
+    margin-bottom:5rem
+}
+@media (max-width: 600px){
+    section.our-work .project-link{
+        display:block
+    }
+    section.our-work .story-more{
+        display:none
+    }
+}
+@media (min-width: 600px){
+    section.our-work .project-link{
+        display:none
+    }
+}
+section.blog .blog-item a{
+    text-decoration:none
+}
+section.blog .blog-item .blog-image{
+    width:100%;
+    background-position:50% 0%;
+    background-size:cover;
+    background-origin:content-box;
+    background-repeat:no-repeat;
+    height:170px;
+    border-top:6px solid #DC0614;
+    padding-top:8px
+}
 footer { text-align: left; background-color: #dee0e2; padding: 60px 0 10px 0; }
 footer .gov-logo { padding: 20px 0; border-top: 1px solid #bbb; }
 footer .gov-logo a { display: block; width: 100px; margin: auto; }
