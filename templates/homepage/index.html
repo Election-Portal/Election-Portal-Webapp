@@ -26,9 +26,12 @@
       </div>
       <div class="popular election-width-one-third">
         <h2>Popular on Election Portal</h2>
-        <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '5' %}
-          <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
-          </li>{% endif %}{% endfor %}
+        <ul class="election-unstyled-list">
+          {% for article in popular_articles %}
+          <li><a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
+          </a>
+          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>
@@ -41,16 +44,22 @@
     <div class="borderline">
     <div class="election-width-one-third">
       <h1>More on Election Portal</h1>
-      <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '5' %}
-        <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
-        </li>{% endif %}{% endfor %}
+      <ul class="election-unstyled-list">
+            {% for article in more_on_articles %}
+          <li><a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
+          </a>
+          </li>
+          {% endfor %}
       </ul>
     </div>
     <div class="election-width-one-third">
       <h3>Most active</h3>
-      <ul class="election-unstyled-list">{% for blogs in blogs %}{% if blogs.home == '6' %}
-        <li><a href="{% url 'post' blogs.slug %}">{{ blogs.title | title }}</a>
-        </li>{% endif %}{% endfor %}
+      <ul class="election-unstyled-list">
+          {% for article in most_active_articles %}
+          <li><a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
+          </a>
+          </li>
+          {% endfor %}
       </ul>
     </div></div>
     <div class="election-width-one-third">

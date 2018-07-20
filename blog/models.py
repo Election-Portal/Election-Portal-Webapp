@@ -13,6 +13,9 @@ class Article(models.Model):
     body = models.TextField()
     category = models.ForeignKey('Category', on_delete = models.CASCADE)
     is_featured = models.BooleanField(default=False)
+    is_popular = models.BooleanField(default=False)
+    is_more_on = models.BooleanField(default=False)
+    is_most_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

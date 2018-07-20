@@ -43,9 +43,17 @@ def update_article(request, pk):
 
 def article_list(request):
     articles = Article.objects.all().order_by('-published_on')
+    popular_articles = articles.filter(is_popular=True)[:5]
+    more_on_articles = articles.filter(is_more_on=True)[:5]
+    most_active_articles = articles.filter(is_most_active=True)[:5]
+    print(popular_articles)
     template_name = 'blog/list.html'
     context = {
         "articles": articles,
+        "more_on_articles":more_on_articles,
+        "popular_articles":popular_articles,
+        "most_active_articles":most_active_articles,
+
     }
     return render(request, template_name, context)
 

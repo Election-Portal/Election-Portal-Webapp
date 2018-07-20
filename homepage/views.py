@@ -2,12 +2,20 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.views import View
 from issues.forms import ComplainForm
 from django.urls import reverse
+from blog.models import Article
 
 # Create your views here.
 
 def show_homepage(request):
+    articles = Article.objects.all().order_by('-published_on')
+    popular_articles = articles.filter(is_popular=True)[:5]
+    more_on_articles = articles.filter(is_more_on=True)[:5]
+    most_active_articles = articles.filter(is_most_active=True)[:5]
     template_name = 'homepage/index.html'
     context = {
+        "more_on_articles":more_on_articles,
+        "popular_articles":popular_articles,
+        "most_active_articles":most_active_articles,
 
     }
     return render(request, template_name, context)
