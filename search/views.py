@@ -4,6 +4,7 @@ from candidates.models import Nominee
 from electoral_constituencies.models import PratinidhiSabha, PradeshSabha
 from political_parties.models import PoliticalParty
 from political_divisions.models import Province, District
+from blog.models import Article
 
 
 # Create your views here.
@@ -37,6 +38,10 @@ def search_result(request):
                 Q(name__icontains=query_string)
             ).distinct()
 
+            all_articles = Article.objects.filter(
+                Q(title__icontains = query_string)
+            )
+
     template_name = "search/result_list.html"
     context = {
         "all_candidates":all_candidates,
@@ -45,6 +50,7 @@ def search_result(request):
         "all_political_parties": all_political_parties,
         "all_provinces":all_provinces,
         "query_string":query_string,
+        "all_articles": all_articles,
     }
 
     return render(request, template_name, context)

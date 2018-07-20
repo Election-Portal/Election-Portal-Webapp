@@ -72,6 +72,16 @@
 
 {% endif %}
 
+
+{% if all_articles %}
+  {% for article in all_articles  %}
+  <a href="{% url 'ArticleDetail' article.pk %}">{{article.title}}</a></br>
+
+  {% endfor %}
+    
+{% endif %}
+  
+
     
 </div>      
 {% endblock content %}
