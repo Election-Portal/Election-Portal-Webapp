@@ -26,7 +26,7 @@
             <a href="{% url 'PoliticalPartyDetail' political_party.pk %}"><strong>{{political_party.name|title}}</strong></a>
           </div>
           <div class="role">
-            <p>{{political_party.ideology|truncatechars:55}}</p>
+            <p>{{political_party.about|truncatechars:55 | safe}}</p>
           </div>
         </div>
         {% endfor %}   <br />

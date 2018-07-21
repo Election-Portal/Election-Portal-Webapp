@@ -21,7 +21,7 @@
                   <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ political_party.name | title }} does not have a photo yet">
                 {% endif %}
                 <div class="role">
-                  <p>{{ political_party.ideology | title }}</p>
+                  <p>{{ political_party.ideology | title | safe }}</p>
                 </div>
   
                 <h3>Content</h3>
