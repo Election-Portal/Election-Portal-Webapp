@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
+from volunteers.models import Volunteer
 from django.db import models, IntegrityError
 # Create your models here.
 
 
 class Article(models.Model):
     title = models.CharField(max_length = 200)
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    author = models.ForeignKey(Volunteer, on_delete = models.CASCADE)
     published_on = models.DateTimeField(auto_now_add = True)
     featured_image = models.ImageField(upload_to = 'blog_featued_image')
     #slug = models.SlugField(unique=True)
