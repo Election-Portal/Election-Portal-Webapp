@@ -59,8 +59,9 @@ def article_list(request):
 
 def article_detail(request, pk):
     articles = Article.objects.all().order_by('-published_on')
-    latest_three_articles = articles[:3]
     article = get_object_or_404(Article, pk=pk)
+    latest_three_articles = articles.exclude(id=article.id)[:3]
+
     template_name = 'blog/detail.html'
     context = {
         'article': article,
