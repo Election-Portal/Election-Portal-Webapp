@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    Login
+    Volunteer Registration
 {% endblock title %}
     
 
@@ -14,7 +14,7 @@
 <div class="election-alert election-alert-error" role="alert">
   <div class="election-alert-body">
     <h3 class="election-alert-heading">Buzz, Error!</h3>
-    <p class="election-alert-text">Your username or password is incorrect.</p>
+    <p class="election-alert-text">Fix the Issues, First!!</p>
   </div>
 </div>
 
@@ -28,20 +28,14 @@
     {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}" class="election-drop_text">
+<form method="post" action="" class="election-drop_text">
   <fieldset>
-    <legend class="usa-drop_text">Sign in</legend>
-    <span>or <a href="{% url 'VolunteerSignUp' %}">create an account</a></span>
+    <legend class="usa-drop_text">Create an Account</legend>
+    <span>or <a href="{% url 'login' %}">Sign in</a></span>
 {% csrf_token %}
 
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</div>
+    {{form.as_p}}
+
 
 <div>
   <input type="submit" value="login" />

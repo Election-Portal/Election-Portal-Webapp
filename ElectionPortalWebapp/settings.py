@@ -48,6 +48,7 @@ MY_APPS =[
     'issues',
     'blog',
     'search',
+    'volunteers',
 
 ]
 
@@ -155,3 +156,4 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'volunteers.User'
