@@ -26,9 +26,7 @@
         Read about our work, our team, some of our most recent accomplishments and beautiful stories we've read on the Internet.
       </p>
     </div>
-  </div>
-  
-<div class="election-grid">
+
     {% for article in articles  %}
     <div class="election-width-one-third story blog-item">
       <a href="{% url 'ArticleDetail' article.pk %}">

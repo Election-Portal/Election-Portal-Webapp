@@ -6,8 +6,11 @@
 {% endblock title %}
 
 {% block content %}
+<br /><br />
+
 <div class="page-content">
   <div class="election-grid">
+
     {% if user.is_authenticated %}
       <div class="election-alert election-alert-info" >
         <div class="election-alert-body">
@@ -17,6 +20,11 @@
       </div>
     <br /><br />
   {% endif %}
+  <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h2>Candidates</h2>
+    </div>
+  </div><br />
 
 
 <ul class="team election-unstyled-list">

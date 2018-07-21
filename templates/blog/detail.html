@@ -50,11 +50,19 @@
   </div>
 </section>
 {% if user.is_authenticated %}
+<br /><br />
     <div class="election-grid">
-        <span><a href="{% url 'UpdateArticle' pk=article.pk %}">Update this blog.</a></span>
+      <div class="election-alert election-alert-info" >
+        <div class="election-alert-body">
+          <h3 class="election-alert-heading">Since you've have an acess...</h3>
+          <p class="election-alert-text">If you find any errors on the article, you may do it <a href="{% url 'UpdateArticle' pk=article.pk %}">here</a>.</p>
+        </div>
+      </div>
     </div>
-        
-    {% endif %}
+    <br /><br />
+  {% endif %}
+
+
 <section class="election-section election-graphic_list">
    <div class="election-grid election-graphic_list-row">
       <div class="election-width-two-thirds election-media_block">
