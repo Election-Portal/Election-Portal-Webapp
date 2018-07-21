@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, HttpResponseRedirect
 from results.models import Result
 from political_divisions.models import Province, District
 from electoral_constituencies.models import PradeshSabha, PratinidhiSabha

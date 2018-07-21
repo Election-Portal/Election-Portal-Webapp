@@ -8,7 +8,7 @@
     
 {% block content %}
 <div class = "election-grid">
-    <h3>Add a Candidate</h3>
+    <h3>Candidate</h3>
 <form method = 'POST' action = '' enctype = 'multipart/form-data'>
     {% csrf_token %}
     {{ form.as_p }}

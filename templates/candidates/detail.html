@@ -8,6 +8,15 @@
 
 {% block content %}
     <div class="page-content">
+
+        {% if user.is_authenticated %}
+        <div class="election-grid">
+            <span><a href="{% url 'UpdateNominee' pk=nominee.pk %}">Update</a></span>
+        </div>
+            
+        {% endif %}
+
+    
       <div class="election-grid">
         <div class="team-member">
           <div class="election-grid">

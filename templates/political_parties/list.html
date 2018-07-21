@@ -10,6 +10,20 @@
 
 {% block content %} 
 <div class="page-content">
+
+    {% if user.is_authenticated %}
+    <div class="election-grid">
+      <div class="election-alert election-alert-info" >
+        <div class="election-alert-body">
+          <h3 class="election-alert-heading">Since you've have an acess...</h3>
+          <p class="election-alert-text">Did we miss something?<a href="{% url 'AddPoliticalParty' %}">Add here</a>.</p>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+  {% endif %}
+
+
     <div class="election-grid">
       <h1>All Political Parties</h1> <br />
       <div class="election-grid team">

@@ -1,7 +1,8 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.shortcuts import render, HttpResponse, get_object_or_404, HttpResponseRedirect
 from candidates.forms import NomineeForm
 from candidates.models import Nominee
 from django.views import View
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -19,6 +20,25 @@ def add_nominee(request):
         form = NomineeForm()
     
     template_name = "candidates/add_nominee.html"
+    context = {
+        'form':form,
+    }
+    return render(request, template_name, context)
+
+    
+
+@login_required
+def update_nominee(request, pk):
+    nominee = get_object_or_404(Nominee, pk=pk)
+    if request.method == 'POST':
+        form = NomineeForm(request.POST, request.FILES, instance=nominee)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('NomineeDetail', kwargs={'pk':pk,}))
+    else:
+        form = NomineeForm(instance = nominee)
+
+    template_name = 'candidates/add_nominee.html'
     context = {
         'form':form,
     }
