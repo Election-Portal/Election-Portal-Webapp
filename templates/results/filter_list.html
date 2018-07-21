@@ -97,7 +97,7 @@
       Pradesh Sabhas
       <ul id="navigation">
         {% for pradesh_sabha in filter_pradesh_sabhas %}
-        <li><a href="{% url 'PradeshSabhaDetails' pradesh_sabha.pk %}">{{ pradesh_sabha.name | capfirst }}</a>
+        <li><a href="{% url 'PradeshSabhaResultDetails' pradesh_sabha.pk %}">{{ pradesh_sabha.name | capfirst }}</a>
         </li>
         {% endfor %}
     <br />

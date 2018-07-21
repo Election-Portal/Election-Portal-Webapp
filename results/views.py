@@ -41,11 +41,28 @@ def show_filter_sabhas(request, province, district):
 
 
 def pratinidhisabha_result_details(request,pratinidhi_sabha_pk):
-    pratinidhisabha = get_object_or_404(PratinidhiSabha,pk=pratinidhi_sabha_pk)
-    contesting_candidates = Nominee.objects.filter(Sabha__id=pratinidhisabha.id)
+    pratinidhisabha = get_object_or_404(PradeshSabha,pk=pratinidhi_sabha_pk)
+    contesting_candidates = Nominee.objects.filter(object_id=pratinidhisabha.id)
+    # test = Nominee.objects.get(id=1)
+    # # print(test.NomineeSabhaSet.all())
+    # print(test.content_object)
+    # print(pratinidhisabha)
+    # print(contesting_candidates)
+    # print("________________________________________________________--")
     template_name = "results/pratinidhisabha_result_details.html"
     context = {
         "pratinidhisabha":pratinidhisabha,
+        "contesting_candidates":contesting_candidates,
+    }
+    return render(request, template_name, context)
+
+def pradeshsabha_result_details(request,pradeshsabha_pk):
+    pradeshsabha = get_object_or_404(PradeshSabha,pk=pradeshsabha_pk)
+    contesting_candidates = Nominee.objects.filter(object_id=pradeshsabha.id)
+
+    template_name = "results/pradeshsabha_result_details.html"
+    context = {
+        "pradeshsabha":pradeshsabha,
         "contesting_candidates":contesting_candidates,
     }
     return render(request, template_name, context)

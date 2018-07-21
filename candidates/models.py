@@ -17,7 +17,7 @@ class Nominee(models.Model):
     result = models.ForeignKey(Result, on_delete=models.CASCADE, related_name="NomineeResultSet", null=True, blank=True)
     # Further work required. candidacy_to must include option for the location rather than the model name.
     limit = models.Q(app_label = 'electoral_constituencies', model = 'pradeshsabha') | models.Q(app_label = 'electoral_constituencies', model = 'pratinidhisabha')
-    Sabha = models.ForeignKey(ContentType, limit_choices_to=limit,on_delete=models.CASCADE)
+    Sabha = models.ForeignKey(ContentType, limit_choices_to=limit,on_delete=models.CASCADE, related_name="NomineeSabhaSet")
     object_id = fields.GfkLookupField('Sabha')
     content_object = GenericForeignKey('Sabha', 'object_id')
     political_affiliation = models.ForeignKey(PoliticalParty, related_name = "nominee_political_affiliation_set", on_delete=models.CASCADE)
