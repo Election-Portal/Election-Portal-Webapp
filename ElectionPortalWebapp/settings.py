@@ -25,7 +25,9 @@ SECRET_KEY = '+_(sjgdheyy@=9)nhfd1h5j+7m0ewzs$^-&cgkiv2_yh=$zxi('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'electionportal.pythonanywhere.com', '127.0.0.1'
+]
 
 
 # Application definition

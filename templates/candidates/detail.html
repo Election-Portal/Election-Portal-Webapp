@@ -19,17 +19,15 @@
                 <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ nominee.full_name | title }} does not have a photo yet">
               {% endif %}
 
-        	  <h3>Content</h3>
-	              <ul class="election-unstyled-list">
-                  <li>Zone:-{{ infor.zone | title }}</li>
+            <h3>Content</h3>
+                <ul class="election-unstyled-list">
                   <li>District:-{{ nominee.district | title }}</li>
-                  <li>Gender:-{{ infor.gender }}</li>
+  <!--                  <li>Gender:-{{ nominee.gender }}</li> -->
                   <li>Date of Birth:-{{ nominee.dob }}</li>
                   <!-- <li>Awards:-{{ nominee.awards }}</li> -->
                   <li>Political Affiliation:- {{nominee.political_affiliation}}</li>
                   <!-- <li>Academic Background:- {{nominee.academic_background}}</li> -->
                   <li>Ideology:- {{nominee.ideology}}</li>
-                  
                   {% if nominee.is_incumbent %}
                       <li>Currently holds the post.</li>
                   {% endif %}
@@ -46,12 +44,6 @@
 
                 <h2 id="biography">Biography</h2>
                 <div class="bio">{{ nominee.biography|safe }}
-                  <!-- delete this -->
-                  Starting as a Jumper, he did not jump.</br>
-                  Starting as a fighter, he did not fight,</br>
-                  
-                  Leo Messi awards of Best football playing,</br>
-                  Neymar AWard of best divjing in the workd case scenario.
                 </div>
             </div>
           </div>
@@ -59,4 +51,5 @@
       </div>
     </div>
     <br />
+
 {% endblock content %}

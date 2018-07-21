@@ -27,6 +27,7 @@ class Nominee(models.Model):
     net_worth = models.IntegerField()
     ideology = models.TextField()
     is_incumbent = models.BooleanField(default=False)
+    biography = models.TextField(null=True, blank=True)
     # biography(long html supported), age, Gender, criminal_cases
 
     def __str__(self):
