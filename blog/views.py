@@ -3,6 +3,7 @@ from blog.models import Article, Category
 from blog.forms import ArticleForm
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from volunteers.models import Volunteer
 # Create your views here.
 
 @login_required
@@ -10,6 +11,9 @@ def add_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
+            form = form.save(commit=False)
+            volunteer = get_object_or_404(Volunteer, user=request.user)
+            form.author = volunteer
             form.save()
             return HttpResponseRedirect(reverse('ArticlesList', args=[]))
     else:
@@ -27,7 +31,11 @@ def update_article(request, pk):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
+            form = form.save(commit=False)
+            volunteer = get_object_or_404(Volunteer, user=request.user)
+            form.author = volunteer
             form.save()
+
             return HttpResponseRedirect(reverse('ArticleDetail', kwargs={'pk':pk,}))
     else:
         form = ArticleForm(instance = article)
@@ -60,9 +68,12 @@ def article_list(request):
 def article_detail(request, pk):
     articles = Article.objects.all().order_by('-published_on')
     article = get_object_or_404(Article, pk=pk)
+    latest_three_articles = articles.exclude(id=article.id)[:3]
+
     template_name = 'blog/detail.html'
     context = {
         'article': article,
+        'latest_three_articles': latest_three_articles,
         'articles': articles
     }
     return render(request, template_name, context)

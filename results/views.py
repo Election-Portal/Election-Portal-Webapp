@@ -41,7 +41,7 @@ def show_filter_sabhas(request, province, district):
 
 
 def pratinidhisabha_result_details(request,pratinidhi_sabha_pk):
-    pratinidhisabha = get_object_or_404(PradeshSabha,pk=pratinidhi_sabha_pk)
+    pratinidhisabha = get_object_or_404(PratinidhiSabha,pk=pratinidhi_sabha_pk)
     contesting_candidates = Nominee.objects.filter(object_id=pratinidhisabha.id)
     # test = Nominee.objects.get(id=1)
     # # print(test.NomineeSabhaSet.all())

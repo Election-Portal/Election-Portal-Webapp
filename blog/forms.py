@@ -5,7 +5,7 @@ class ArticleForm(ModelForm):
 
     class Meta:
         model = Article
-        fields = '__all__'
+        exclude = ('author',)
 
 
 class CategoryForm(ModelForm):

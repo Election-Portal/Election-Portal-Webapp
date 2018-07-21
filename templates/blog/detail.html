@@ -70,7 +70,7 @@
         <section class="post-pagination election-grid">
           <div class="election-width-one-half">
             
-              <b><a href="/2018-05-22-performance-gov-launches-twitter.md/" style="text-decoration:none;">
+              <b><a href="#" style="text-decoration:none;">
                 <span class="link-arrow-left">
                 &#10094;  Previous Post
                 </span>
@@ -94,28 +94,29 @@
 
 
     </div>
+
       <aside class="election-width-one-third section-info section-info-gray">
             <ul>
 <div class="relatedPosts">
 
-  <h3>Latest posts</h3>    
+  <h3>Latest posts</h3>   
+  {% for article in latest_three_articles  %} 
       <div>
-      <p class="card-tag">July 21, 2018</p>
-      <p><a style="text-decoration: none;" href="#">First of the latest post, sorted by date.</a></p>
+      <p class="card-tag">{{ article.published_on }}</p>
+      <p><a style="text-decoration: none;" href="{% url 'ArticleDetail' article.pk %}">{{ article.title }}</a></p>
       <br>
       </div>
-
-      <div>
-      <p class="card-tag">July 20, 2018</p>
-      <p><a style="text-decoration: none;" href="#">Second of the latest post, sorted by date.</a></p>
-      <br>
-      </div>
+{% endfor %}
 </div>
 
 </ul>
       </aside>
     </div>
   </section>
+
+  </div>
+  </div>
+  <br />
+
+    
 {% endblock content %}
-    
-    
