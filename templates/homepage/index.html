@@ -19,8 +19,11 @@
 
         <form class="election-search election-search-big" method="GET" action= "{% url 'SearchResult' %}">
           <div role="search">
-            <input type = 'text' name = 'search_q' value = '{{request.GET.Post}}' placeholder = 'Search Election Portal'/>          
-            <input type = 'submit' value = 'Search'/>
+            <label class="election-sr-only" for="search-field-big">Search</label>
+            <input id="search-field-big" type = 'search' name = 'search_q' value = '{{request.GET.Post}}' placeholder = 'Search Election Portal'/>          
+            <button type="submit">
+              <span class="election-search-submit-text">Search</span>
+            </button>          
           </div>
         </form>
       </div>

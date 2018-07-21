@@ -8,29 +8,114 @@
 
 
 {% block content %}
-<div class="page-content">
+    
 
-    {% if user.is_authenticated %}
+
+  <section class="election-section election-section-dark election-graphic_list">
+   <div class="election-grid election-graphic_list-row">
+     <div class="election-width-one-half election-media_block">
+       <div class="election-media_block-body">
+         <a href="/blog" style="text-decoration:none;">
+
+           <b>&#10094; &nbsp; Back to Blog</a></b>
+
+           <p class="card-tag-post"> </p>
+              <h2>{{article.title}}</h2>
+
+<p class="post-byline">
+
+  By
+  
+    <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        {{article.author}} | Takes {{article.time_read}} minutes to read.
+    </span><br /><br />
+              <span class="card-tag-text">Category:</span><br>
+          <span class="post-tags" itemprop="keywords">
+            
+              <span class="election-label">
+              <a href=""> {{article.category}}</a>
+              </a>
+            </span>
+    
+  
+</p>
+
+
+      </div>
+    </div>
+<div class="election-width-one-half">
+     <img src="{{article.featured_image.url}}">
+    </div>
+  </div>
+  </div>
+</section>
+{% if user.is_authenticated %}
     <div class="election-grid">
         <span><a href="{% url 'UpdateArticle' pk=article.pk %}">Update this blog.</a></span>
     </div>
         
     {% endif %}
+<section class="election-section election-graphic_list">
+   <div class="election-grid election-graphic_list-row">
+      <div class="election-width-two-thirds election-media_block">
+        <div class="election-media_block-body">
+            <time datetime="" itemprop="datePublished">{{article.published_on}}</time>
+          </p>
+
+<br /><br />
+{{article.body|safe}}
+      </div>
+<br />
+      
+        <section class="post-pagination election-grid">
+          <div class="election-width-one-half">
+            
+              <b><a href="/2018-05-22-performance-gov-launches-twitter.md/" style="text-decoration:none;">
+                <span class="link-arrow-left">
+                &#10094;  Previous Post
+                </span>
+                <h5>&ldquo;This link represents the previous post, here'll be the title of that previous post.&rdquo;</h5>
+              </a></b>
+            
+          </div>
+          <div class="election-width-one-half">
+            
+                <b><a href="#" style="text-decoration:none;">
+                  <span class="link-arrow-right">
+                    Next Post &#10095;
+                  </span>
+                  <h5>&ldquo;This link represents the next post, here'll be the title of that next post&rdquo;</h5>
+                </a></b>
+            
+          </div>
+        </section>
+      
 
 
-    <div class="election-grid">
-      <h1>{{article.title}}</h1> <br />
-    <div class="election-grid team">
-      <img src={{article.featured_image.url}}>
-      {{article.body|safe}}</br>
-            {{article.author}}</br>
-            {{article.time_read}}</br>
-            {{article.published_on}}</br>
-            {{article.category}}</br>
+
     </div>
-  </div>
-  </div>
-  <br />
+      <aside class="election-width-one-third section-info section-info-gray">
+            <ul>
+<div class="relatedPosts">
+
+  <h3>Latest posts</h3>    
+      <div>
+      <p class="card-tag">July 21, 2018</p>
+      <p><a style="text-decoration: none;" href="#">First of the latest post, sorted by date.</a></p>
+      <br>
+      </div>
+
+      <div>
+      <p class="card-tag">July 20, 2018</p>
+      <p><a style="text-decoration: none;" href="#">Second of the latest post, sorted by date.</a></p>
+      <br>
+      </div>
+</div>
+
+</ul>
+      </aside>
+    </div>
+  </section>
 {% endblock content %}
     
     
