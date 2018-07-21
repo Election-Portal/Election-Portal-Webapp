@@ -11,6 +11,7 @@ class Article(models.Model):
     featured_image = models.ImageField(upload_to = 'blog_featued_image')
     #slug = models.SlugField(unique=True)
     time_read = models.IntegerField()
+    summary = models.TextField(default="Write the executive summary ...")
     body = models.TextField()
     category = models.ForeignKey('Category', on_delete = models.CASCADE)
     is_featured = models.BooleanField(default=False)
