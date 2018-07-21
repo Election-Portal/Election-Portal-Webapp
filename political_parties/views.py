@@ -20,6 +20,24 @@ def add_political_party(request):
         "form":form,
     }
     return render(request, template_name, context)
+
+@login_required
+def update_political_party(request, pk):
+    political_party = get_object_or_404(PoliticalParty, pk=pk)
+    if request.method == 'POST':
+        form = PoliticalPartyForm(request.POST, request.FILES, instance=political_party)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('PoliticalPartyDetail', kwargs={'pk':pk,}))
+    else:
+        form = PoliticalPartyForm(instance = political_party)
+
+    template_name = 'political_parties/add_political_party.html'
+    context = {
+        'form':form,
+    }
+    return render(request, template_name, context)
+
 # def add_nominee(request):
 #     if request.method == "POST":
 #         form = NomineeForm(request.POST, request.FILES)
