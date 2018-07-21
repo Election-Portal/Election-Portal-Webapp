@@ -31,6 +31,21 @@
   </div>
   </div>
   <br />
+
+  <!-- Latest Three articles-->
+
+  
+  {% for article in latest_three_articles  %}
+  <div class="election-width-one-third story blog-item">
+    <a href="{% url 'ArticleDetail' article.pk %}">
+      <div class="blog-image" style="background-image:url({{article.featured_image.url}})" title="{{entry.image_description}}"></div>
+    </a>
+    <h3><a href="{% url 'ArticleDetail' article.pk %}">{{ article.title }}</a></h3>
+    {{article.summary|truncatechars:125}}
+    <p><a class="read-more" title="Read More" href="{% url 'ArticleDetail' article.pk %}">Read more...</a></p>
+  </div>
+  {% endfor %}
+    
 {% endblock content %}
     
     

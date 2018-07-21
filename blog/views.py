@@ -59,10 +59,12 @@ def article_list(request):
 
 def article_detail(request, pk):
     articles = Article.objects.all().order_by('-published_on')
+    latest_three_articles = articles[:3]
     article = get_object_or_404(Article, pk=pk)
     template_name = 'blog/detail.html'
     context = {
         'article': article,
+        'latest_three_articles': latest_three_articles,
         'articles': articles
     }
     return render(request, template_name, context)
