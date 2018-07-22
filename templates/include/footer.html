@@ -6,11 +6,11 @@
       <h3>Information</h3>
       <ul>
         <li><a href="">About this project</a> </li>
-        <li><a href="">Explore</a> </li>
-		    <li><a href="">Candidates of Local Election</a> </li>
-		    <li><a href="">Political Parties in Nepal</a> </li>
+        <li><a href="{% url 'AllConstituences' %}">Explore</a> </li>
+		    <li><a href="{% url 'AllNominees' %}">Candidates of Local Election</a> </li>
+		    <li><a href="{% url 'AllPoliticalParties' %}">Political Parties in Nepal</a> </li>
         <li><a href="">Get Involved</a> </li>
-        <li><a href="">Blog/Notice</a> </li>
+        <li><a href="{% url 'ArticlesList' %}">Blog/Notice</a> </li>
         <li><a href="">Frequently Asked Questions (FAQ)</a> </li>
         <li><a href="">Contact Us</a> </li>
       </ul>
