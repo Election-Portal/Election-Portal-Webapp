@@ -20,10 +20,10 @@
         <form class="election-search election-search-big" method="GET" action= "{% url 'SearchResult' %}">
           <div role="search">
             <label class="election-sr-only" for="search-field-big">Search</label>
-            <input id="search-field-big" type = 'search' name = 'search_q' value = '{{request.GET.Post}}' placeholder = 'Search Election Portal'/>          
+            <input id="search-field-big" type = 'search' name = 'search_q' value = '{{request.GET.Post}}' placeholder = 'Search Election Portal'/>
             <button type="submit">
               <span class="election-search-submit-text">Search</span>
-            </button>          
+            </button>
           </div>
         </form>
       </div>
@@ -40,9 +40,9 @@
     </div>
   </header>
 
-  
+
 <!-- Map -->
-  
+
   <div class="election-grid">
     <div class="borderline">
     <div class="election-width-one-third">
@@ -69,10 +69,10 @@
       <div class="election-hero-callout election-section-dark">
         <h2 style="text-align:center;"><span class="election-hero-callout-alt" id="countdown"></span>Local Elections</h2>
         <a class="election-hero-link" href="#">Here's everything we know</a>
-        
+
       </div>
     </div>
   </div><br /><br />
+  {{ total_voters }} <br/>
+  {{ total_population }}
 {% endblock content %}
-    
-    
