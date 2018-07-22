@@ -8,6 +8,16 @@
 
 
 {% block content %}
+<br /><br />
+<div class="page-content">
+    <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h2>Search Result</h2>
+      <p class="election-font-lead">
+        Here are the search result(s) for {{query_string}}.
+      </p>
+    </div>
+  </div><br />
 <div class = "election-grid">
 {% if all_provinces %}
 
@@ -80,10 +90,9 @@
   {% endfor %}
     
 {% endif %}
-  
-
-    
-</div>      
+</div>     
+</div>
+<br /><br /> 
 {% endblock content %}
     
     
