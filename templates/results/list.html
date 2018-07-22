@@ -47,27 +47,28 @@
     </div>
   </div><br />
   <div class="election-grid">
-    <div class="election-width-two-thirds">
-      <form class="election-form">
-
+    <div class="election-width-one-third">
         <select name="Province" id="SelectedProvince">
             <option value="" selected>Select Province</option>
             {% for province in all_province %}
             <option value="{{ province.name }}">{{ province.name | capfirst }}</option>
             {% endfor %}
         </select>
+    </div>
         
 
-
+    <div class="election-width-one-third">
         <select name="District" id="SelectedDistrict">
           <option value="" selected>Choose District</option>
           {% for district in all_district %}
           <option value="{{ district.id }}">{{ district.name | capfirst }}</option>
           {% endfor %}
         </select>
-
-        <input type="button" value="Submit" onclick="RedirecttoDistrict()" />
-
+</div>
+    <div class="election-width-one-third">
+        <button value="Submit" class="election-button-big" onclick="RedirecttoDistrict()">Search</button> 
+</div>
+</div>
         <script>
           function RedirecttoDistrict() {
             var province = document.getElementById("SelectedProvince");
@@ -85,22 +86,28 @@
       </form>
     </div>
   </div>
+</div><br /><br />
   <div class="election-grid">
-    Pratinidhi Sabhas
+    <div class="election-width-one-half">
+    <h2>Pratinidhi Sabha</h2>
     <ul id="navigation">
       {% for pratinidhi_sabha in filter_pratinidhi_sabhas %}
       <li><a href="{% url 'PratinidhiSabhaResultDetails' pratinidhi_sabha.pk%}">{{ pratinidhi_sabha.name | capfirst }}</a>
       </li>
       {% endfor %}
     </ul>
+  </div>
+  <div class="election-width-one-half">
   
-    Pradesh Sabhas
+    <h2>Pradesh Sabha</h2>
     <ul id="navigation">
       {% for pradesh_sabha in filter_pradesh_sabhas %}
       <li><a href="{% url 'PradeshSabhaResultDetails' pradesh_sabha.pk %}">{{ pradesh_sabha.name | capfirst }}</a>
       </li>
       {% endfor %}
+    </ul>
   <br />
+</div>
 </div>
 <br />
 {% endblock content %}
