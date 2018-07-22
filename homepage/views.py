@@ -7,6 +7,10 @@ from blog.models import Article
 from political_divisions.models import Province #To Get total population
 from django.db.models import Sum
 
+from django.db.models import Count
+
+from political_parties.models import PoliticalParty
+
 # Create your views here.
 
 def show_homepage(request):
@@ -16,17 +20,19 @@ def show_homepage(request):
     most_active_articles = articles.filter(is_most_active=True)[:5]
     template_name = 'homepage/index.html'
 
+    total_parties = PoliticalParty.objects.all().count()
     total_population = Province.objects.aggregate(Sum('population'))
     atotal_population = total_population["population__sum"]
     total_voters = Province.objects.aggregate(Sum('voters'))
     atotal_voters = total_voters["voters__sum"]
-    
+
     context = {
         "more_on_articles":more_on_articles,
         "popular_articles":popular_articles,
         "most_active_articles":most_active_articles,
         "total_population" : atotal_population,
         "total_voters" : atotal_voters,
+        "total_parties" : total_parties,
 
     }
     return render(request, template_name, context)
