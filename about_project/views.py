@@ -4,7 +4,7 @@ from about_project.models import About
 
 # Create your views here.
 def about(request):
-    article = About.objects.get(id=1)
+    article = About.objects.all()[0]
     template_name = 'about/post.html'
     about = article.about
     title = 'About this Project'
@@ -15,7 +15,7 @@ def about(request):
     return render(request, template_name, context)
 
 def get_involved(request):
-    article = About.objects.get(id=1)
+    article = About.objects.all()[0]
     template_name = 'about/post.html'
     about = article.get_involved
     title = 'Get Involved'
@@ -26,7 +26,7 @@ def get_involved(request):
     return render(request, template_name, context)
 
 def faq(request):
-    article = About.objects.get(id=1)
+    article = About.objects.all()[0]
     template_name = 'about/post.html'
     about = article.faq
     title = 'Frequently Asked Questions (FAQ)'
@@ -37,7 +37,7 @@ def faq(request):
     return render(request, template_name, context)
 
 def contact(request):
-    article = About.objects.get(id=1)
+    article = About.objects.all()[0]
     template_name = 'about/post.html'
     about = article.contact
     title = 'Contact Us'
