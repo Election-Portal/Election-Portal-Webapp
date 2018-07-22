@@ -49,6 +49,7 @@ MY_APPS =[
     'blog',
     'search',
     'volunteers',
+    'about_project',
 
 ]
 
@@ -146,7 +147,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),
     "static_outside_for_all", "electionportalwebapp", "static_root")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
