@@ -7,29 +7,50 @@
     
 
 {% block content %}
-    
+<br /><br />
 <div class="page-content">
-        <div class="election-grid">
-          <h1>{{ pradesh_sabha.name }}</h1> <br />
-          <div class="election-grid team">{% for infor in infor %}{% if dis.id == infor.district.id %}
-            <a href="#">{{ infor.name | capfirst }}</a>
-          {% endif %}{% endfor %} <br />
-<!--            <div class="election-grid">
-              <bold>Is You VDC or Municipality missed?</bold>
-              <span>Add Them Here <a href="#">Add VDC or Municipality</a></span>
-            </div>
-          </div>
-        -->
+    <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h2>{{ pradesh_sabha.name }}</h2>
+      <p class="election-font-lead">
+        Here's the latest update of {{ pradesh_sabha.name }} from our people at the ground.
+      </p>
+    </div>
+  </div><br /></div>
 
-          District:- {{pradesh_sabha.district}} <br/>
-          Province:- {{pradesh_sabha.province}} <br/>
-          Area    :- {{pradesh_sabha.area}} sq. km <br/>
-          Population:- {{pradesh_sabha.population}}<br/>
-          Voters:- {{pradesh_sabha.voters}} <br/>
-          Is Marginal:- {{pradesh_sabha.is_marginal}}<br/>
-          Parliamentiarian:- {{pradesh_sabha.winner}}<br/>
-          Rulling Party:- <a href="{% url 'PoliticalPartyDetail' pradesh_sabha.won_political_party.pk %}">{{pradesh_sabha.won_political_party}}</a><br/>        </div>
-      </div>
-      <br />
+<div class="election-grid">
+  <div class="borderline">
+  <div class="election-width-one-third">
+  <div class="large-numbers">
+    <ol>
+      <li><a href="#"><strong>{{pradesh_sabha.district}}</strong>District</a></li>
+      <li><a href="#"><strong>{{pradesh_sabha.province}}</strong> Province</a></li>
+    </ol>
+  </div>
+</div>
+<div class="election-width-one-third">
+  <div class="large-numbers">
+      <li><a href="#"><strong>{{pradesh_sabha.area}} sq. km</strong> Area</a></li>
+      <li><a href="#"><strong>{{pradesh_sabha.voters}}</strong>Voters</a></li>
+    </ol>
+  </div>
+</div>
+  <div class="election-width-one-third">
+  <div class="large-numbers">
+    <ol>
+      <li><a href="#"><strong>{{pradesh_sabha.is_marginal}}</strong>Is marginal?</a></li>
+      <li><a href="#"><strong>{{pradesh_sabha.winner}}</strong> Parliamentarian</a></li>
+    </ol>
+  </div>
+</div>
+</div></div>
+<div class="election-grid">
+<div class="election-width-two-thirds">
+<p class="election-font-lead intro">The Election Commission, Nepal (ECN) has finalized the voter list for the Local Level Election.</p>
+<p class="election-font-lead">According to the final voter list released on 2 March 2017, the total number of voters are 14,054,482. Among them are 7,069,714 men; 6,984,625 women; and 143 third gender. The ECN will publicize the voter list through its own website following the completion of redetermination of polling centers throughout the country.</p>
+<p class="election-font-lead">There will be no further transfers further registration/transfer of voters after the election date has been announced, based on the provisions of the Electoral Rolls Act, 2017.</p>
+</div>
+  </div>
+</div><br /><br />
 {% endblock content %}
 
