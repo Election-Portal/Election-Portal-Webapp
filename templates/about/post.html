@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+    {{title}}
+{% endblock title %}
+
+
+{% block content %}
+
+
+
+  <section class="election-section election-section-dark election-graphic_list">
+   <div class="election-grid election-graphic_list-row">
+     <div class="election-width-one-half election-media_block">
+       <div class="election-media_block-body">
+         <a href="/blog" style="text-decoration:none;">
+
+           <b>&#10094; &nbsp; Back to Blog</a></b>
+
+           <p class="card-tag-post"> </p>
+              <h2>{{title}}</h2>
+
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="election-section election-graphic_list">
+   <div class="election-grid election-graphic_list-row">
+      <div class="election-width-two-thirds election-media_block">
+        <div class="election-media_block-body">
+          <br /><br />{{about|safe}}
+        </div><br />
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}
