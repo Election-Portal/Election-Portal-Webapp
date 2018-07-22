@@ -9,8 +9,7 @@ class ComplainForm(forms.ModelForm):
         """Meta definition for Complainform."""
 
         model = Complain
-        fields = "__all__"
+        exclude = ('url',)
         widgets = {
         'url': forms.TextInput(attrs={'disabled': True}),
     }
-
