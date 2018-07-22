@@ -6,31 +6,38 @@
 {% endblock title %}
 
 {% block content %}
+
+
+
+
 <br /><br />
-
 <div class="page-content">
-
-    {% if user.is_authenticated %}
+  {% if user.is_authenticated %}
     <div class="election-grid">
       <div class="election-alert election-alert-info" >
         <div class="election-alert-body">
           <h3 class="election-alert-heading">Since you've have an acess...</h3>
-          <p class="election-alert-text">Did we miss something?<a href="{% url 'AddPoliticalParty' %}">Add here</a>.</p>
+          <p class="election-alert-text">Did we miss anything? If yes, you may add it <a href="{% url 'AddPoliticalParty' %}">here</a>.</p>
         </div>
       </div>
     </div>
     <br /><br />
   {% endif %}
 
+    <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h2>Political Parties</h2>
+    </div>
+  </div><br />
+
 
     <div class="election-grid">
-      <h1>All Political Parties</h1> <br />
       <div class="election-grid team">
           {% for political_party in all_political_parties %}
         <div class="election-width-one-fourth">
           <a href="{% url 'PoliticalPartyDetail' political_party.pk %}">
             {% if political_party.party_logo %}
-            <img src="{{ political_party.party_logo.url}}" alt="Photo of {{ political_party.name | title }}">
+            <img src="{{ political_party.party_logo.url}}" style="height:170px" alt="Photo of {{ political_party.name | title }}">
           {% else %}
             <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ political_party.name | title }} does not have a photo yet">
           {% endif %}

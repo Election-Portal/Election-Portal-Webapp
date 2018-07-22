@@ -1,13 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
-
 {% block title %}
     Results
 {% endblock title %}
-
-
-
-
 {% block extra_js %}
 <script src="{% static '/js/jquery.js' %}"></script>
 <script>
@@ -41,13 +36,16 @@
 {% endblock extra_js %}
     
 {% block content %}
-  <br>
-  <div class="election-grid">
+<br /><br />
+<div class="page-content">
+    <div class="election-grid">
     <div class="election-width-two-thirds">
-      <h1>Explore</h1>
-      <p class="election-font-lead">We are committed to providing free, comprehensive, standardized, linked set of election data for Nepal.</p>
+      <h2>Discover</h2>
+      <p class="election-font-lead">
+        Read about our work, our team, some of our most recent accomplishments and beautiful stories we've read on the Internet.
+      </p>
     </div>
-  </div>
+  </div><br />
   <div class="election-grid">
     <div class="election-width-two-thirds">
       <form class="election-form">
