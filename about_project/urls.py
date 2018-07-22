@@ -5,5 +5,5 @@ urlpatterns = [
     path ('about-project', about, name="AboutProject" ),
     path ('contact-us', contact, name="ContactUs" ),
     path ('faq', faq, name="FAQ" ),
-    path ('get-involved', about, name="GetInvolved" )
+    path ('get-involved', get_involved, name="GetInvolved" )
 ]
