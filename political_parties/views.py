@@ -14,7 +14,7 @@ def add_political_party(request):
             return HttpResponseRedirect(reverse('HomePage'))
     else:
         form = PoliticalPartyForm()
-    
+
     template_name = "political_parties/add_political_party.html"
     context = {
         "form":form,
@@ -44,10 +44,10 @@ def update_political_party(request, pk):
 #         if form.is_valid():
 #             form.save()
 #             return HttpResponse("Nominee is addes successfully.")
-    
+
 #     else:
 #         form = NomineeForm()
-    
+
 #     template_name = "candidates/add_nominee.html"
 #     context = {
 #         'form':form,
@@ -55,7 +55,7 @@ def update_political_party(request, pk):
 #     return render(request, template_name, context)
 
 def political_parties_list(request):
-    all_political_parties = get_list_or_404(PoliticalParty)
+    all_political_parties = PoliticalParty.objects.all().order_by('name')
     template_name = "political_parties/list.html"
     context = {
         "all_political_parties": all_political_parties,
@@ -76,14 +76,14 @@ def political_parties_detail(request, pk):
 # def member_list(request):
 #     all_member = Member.objects.all().order_by('full_name')
 
-#     # SEARCH 
+#     # SEARCH
 #     query_string = request.GET.get('search_q')
 #     if query_string:
 #         all_member = all_member.filter(
 #             Q(full_name__icontains = query_string)|
 #             Q(bio__icontains = query_string)
 #             # Q(alt__icontains = query_string)|
-            
+
 #             ).distinct()
 #     template_name = 'members/list.html'
 #     context = {

@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block title %}
     All Political Parties
 {% endblock title %}
 
+{% block content %}
+<br /><br />
 
-
-{% block content %} 
 <div class="page-content">
 
     {% if user.is_authenticated %}
@@ -51,4 +50,3 @@
   </div>
   <br />
 {% endblock content %}
-    
