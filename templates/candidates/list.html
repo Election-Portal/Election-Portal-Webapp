@@ -6,18 +6,18 @@
 {% endblock title %}
 
 {% block content %}
+
 <br /><br />
-
 <div class="page-content">
-  
-
     {% if user.is_authenticated %}
+    <div class="election-grid">
       <div class="election-alert election-alert-info" >
         <div class="election-alert-body">
           <h3 class="election-alert-heading">Since you've have an acess...</h3>
           <p class="election-alert-text">Is anyone missing? If the answer is yes, you may add a candidate <a href="{% url 'AddNominee' %}">here</a>.</p>
         </div>
       </div>
+    </div>
     <br /><br />
   {% endif %}
     <div class="election-grid">
