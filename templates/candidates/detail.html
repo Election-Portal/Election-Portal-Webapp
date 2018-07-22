@@ -9,13 +9,20 @@
 {% block content %}
     <div class="page-content">
 
-        {% if user.is_authenticated %}
-        <div class="election-grid">
-            <span><a href="{% url 'UpdateNominee' pk=nominee.pk %}">Update</a></span>
-        </div>
-            
-        {% endif %}
 
+  {% if user.is_authenticated %}
+
+    <br /><br />
+    <div class="election-grid">
+      <div class="election-alert election-alert-info" >
+        <div class="election-alert-body">
+          <h3 class="election-alert-heading">Since you've have an acess...</h3>
+          <p class="election-alert-text">You may want to add something amazing here. You may update this candidate's profile <a href="{% url 'UpdateNominee' pk=nominee.pk %}">here</a>.</p>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+  {% endif %}
     
       <div class="election-grid">
         <div class="team-member">
@@ -28,37 +35,45 @@
                 <img src="{% static '/img/ng_logo.png' %}" alt="Placeholder Government of Nepal logo since {{ nominee.full_name | title }} does not have a photo yet">
               {% endif %}
 
-            <h3>Content</h3>
-                <ul class="election-unstyled-list">
-                  <li>District:-{{ nominee.district | title }}</li>
-  <!--                  <li>Gender:-{{ nominee.gender }}</li> -->
-                  <li>Date of Birth:-{{ nominee.dob }}</li>
-                  <!-- <li>Awards:-{{ nominee.awards }}</li> -->
-                  <li>Political Affiliation:- {{nominee.political_affiliation}}</li>
-                  <!-- <li>Academic Background:- {{nominee.academic_background}}</li> -->
-                  <li>Ideology:- {{nominee.ideology}}</li>
-                  {% if nominee.is_incumbent %}
-                      <li>Currently holds the post.</li>
-                  {% endif %}
-                      
+            <h3>Contents</h3>
+            <nav id="navigation">
+                <ul>
+                   <li><a href="#basic">Basic Information</a></li>
+                   <li><a href="#biography">Biography</a></li>
+                   <li><a href="#academic-background">Academic Background</a></li>
+                   <li><a href="#awards">Awards</a></li>   
                 </ul>
-
             </div>
             <div class="election-width-two-thirds">
-              <h2 id="academic_bacground">Academic Background</h2>
-                <div class="academic_background">{{ nominee.academic_background|safe }}</div>
+              <section id="basic">
+                <h2 id="basic">Basic Information</h2>
+                <ul class="election-unstyled-list">
+                  <li><h4>Date of Birth</h4>{{ nominee.dob }}</li>
+                  <!-- <li>Awards:-{{ nominee.awards }}</li> -->
+                  <li><h4>Political Affiliation</h4> {{nominee.political_affiliation}}</li>
+                  <!-- <li>Academic Background:- {{nominee.academic_background}}</li> -->
+                  <li><h4>Ideology</h4> {{nominee.ideology}}</li>                      
+</ul>
+              </section>
 
-                <h2 id="awards">Awards</h2>
-                <div class="awards">{{ nominee.awards|safe }}</div>
-
+              <section id="biography">
                 <h2 id="biography">Biography</h2>
                 <div class="bio">{{ nominee.biography|safe }}
                 </div>
+              </section>
+              <section id="academic-background">
+              <h2 id="academic_bacground">Academic Background</h2>
+                <div class="academic_background">{{ nominee.academic_background|safe }}</div>
+              </section>
+              <section id="awards">
+                <h2 id="awards">Awards</h2>
+                <div class="awards">{{ nominee.awards|safe }}</div>
+              </section>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <br />
+    <br /><br />
 
 {% endblock content %}
