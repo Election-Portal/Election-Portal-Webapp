@@ -18,7 +18,7 @@ Installing Python
 This is a django app. Django is written in 100% pure Python code, so you’ll need to install Python on your system. Django requires Python 2.3 or higher.
 If you’re on Linux or Mac OS X, you probably already have Python installed.
 
-Type python at a command prompt (or in Terminal). If you see something like this, then Python is installed::
+Type python at a command prompt (or in Terminal). If you see something like below, then Python is installed::
 
 
     > python
