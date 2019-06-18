@@ -123,7 +123,7 @@
                 fillColor:'none'     
       }
     },
-  })
+  }).addTo(map)
 
  province = L.geoJson(null, { style: function (feature) {
       return {
@@ -132,8 +132,9 @@
                 fillColor:'none'     
       }
     },
+    
         
-  })
+  }).addTo(map)
 
   
 
@@ -162,7 +163,7 @@ var provinceLayer = {
      "Province": province,
 };
 
-L.control.layers(districtLayer,provinceLayer).addTo(map);
+//L.control.layers(districtLayer,provinceLayer).addTo(map);
 
 
  function handleLayer(feature,layer){  
