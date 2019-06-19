@@ -26,7 +26,7 @@ SECRET_KEY = '+_(sjgdheyy@=9)nhfd1h5j+7m0ewzs$^-&cgkiv2_yh=$zxi('
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'electionportal.pythonanywhere.com', '127.0.0.1'
+    'electionportal.pythonanywhere.com', '127.0.0.1', 'localhost',
 ]
 
 
