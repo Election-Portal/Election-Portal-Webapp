@@ -2755,9 +2755,14 @@ footer ul li:after { content: ""; margin-bottom: 1em; }
     color: #fff;
 }
 
-election-section {
+.election-section {
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 200px;
+}
+
+.election-section-black {
+  background-color: #0B0C0C;
+  color: #ffffff;
 }
