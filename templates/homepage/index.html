@@ -107,14 +107,14 @@
     id: 'mapbox.light'
   }).addTo(map);
 
-  locallevel = L.geoJson(null, { style: function (feature) {
+  district = L.geoJson(null, { style: function (feature) {
       return feature.properties && feature.properties.style;
     },
 
         onEachFeature: handleLayer,
 
   }).addTo(map)
-
+/*
  district = L.geoJson(null, { style: function (feature) {
       return {
                 weight: 2,
@@ -122,8 +122,10 @@
                 fillColor:'none'     
       }
     },
-  })
+  }).addTo(map)
+*/
 
+/*
  province = L.geoJson(null, { style: function (feature) {
       return {
                 weight: 2,
@@ -132,14 +134,15 @@
       }
     },
         
-  })
+  }).addTo(map)
 
-  
-
+  */
+/*
   d3.json('/static/js/gisdata/municipality.topojson', function(error, data) {
   var neighborhoods = topojson.feature(data, data.objects.collection)
   locallevel.addData(neighborhoods);
 })
+*/
 
 
 d3.json('/static/js/gisdata/district.topojson', function(error, data) {
@@ -161,50 +164,105 @@ var provinceLayer = {
      "Province": province,
 };
 
-L.control.layers(districtLayer,provinceLayer).addTo(map);
+//L.control.layers(districtLayer,provinceLayer).addTo(map);
 
 
- function handleLayer(feature,layer){  
+ function handleLayer(feature,layer){ 
             layer.bindLabel(
-            'ID :'+feature.properties.F_ID +'<br>'+
-            'Municipality Name : '+feature.properties.NAME +'<br>'+
-            'Municipality Level : ' + feature.properties.LEVEL +'<br>'+ 
-            'District : ' + feature.properties.DISTRICT +'<br>',{noHide: true})
+            'ID :'+feature.properties.D_ID +'<br>'+
+            'District : ' + feature.properties.district +'<br>',{noHide: true})
 
-  layer.setStyle({
-    fillColor : '#D5E3FF',
-    fillOpacity: 1,
-    color:'#555',
-    weight:1,
-    opacity:0.5
-  });
+            var setColor = layer.feature.properties.pradesh_no;
+                    layer.setStyle({
+                        fillColor: getProvinceColor(setColor),
+                        weight: 1,
+                        opacity: 1,
+                        color: 'white',
+                        dashArray: 2,
+                        fillOpacity: 0.9
+                    });
 
-  layer.on({
-    mouseover: enterLayer,
-    mouseout: leaveLayer
-  });
-  layer.on('click', function (e) {
-    alert(layer.feature.properties.NAME)
-        });
+    layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight
+    });
+    layer.on('click', function (e) {
+      alert(layer.feature.properties.district)
+          });
 }
 
 
-function enterLayer(){  
-  this.bringToFront();
-  this.setStyle({
-    weight:2,
-    opacity: 1
-  });
-}
+    // defined state color
+    function getProvinceColor(state) {
+        if (state == 7) {
+            return 'red';
+        } else if (state == 6) {
+            return '#c1a73e';
+        } else if (state == 5) {
+            return '#da8b4a';
+        }
+        else if (state == 4) {
+            return '#26a9e8';
+        }
+        else if (state == 3) {
+            return '#40a500';
+        }
+        else if (state == 2) {
+            return '#e271a1';
+        }
+        else if (state == 1) {
+            return '#900e94';
+        }
+
+    }
+
+    // end
 
 
-function leaveLayer(){  
-  this.bringToBack();
-  this.setStyle({
-    weight:1,
-    opacity:.5
-  });
-}
+
+
+
+
+    // set highlight color
+    function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle(
+            {
+                weight: 1,
+                color: 'black',
+                fillColor: 'blue',
+            }
+        );
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+
+    // end highlight color
+
+    // reset  color hightlight
+    function resetHighlight(e) {
+        var layer = e.target;
+        var setColor = layer.feature.properties.pradesh_no
+        layer.setStyle(
+            {
+                fillColor: getProvinceColor(setColor),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: 3,
+                fillOpacity: 0.7
+            }
+        );
+
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+    // end resethightlight
+
 
 </script>
 {% endblock content %}
