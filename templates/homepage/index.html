@@ -149,6 +149,7 @@ d3.json('/static/js/gisdata/district.topojson', function(error, data) {
   var neighborhoods = topojson.feature(data, data.objects.collection)
   district.addData(neighborhoods);
 })
+/*
 
 d3.json('/static/js/gisdata/province.topojson', function(error, data) {
   var neighborhoods = topojson.feature(data, data.objects.collection)
@@ -163,13 +164,13 @@ var districtLayer = {
 var provinceLayer = {
      "Province": province,
 };
+*/
 
 //L.control.layers(districtLayer,provinceLayer).addTo(map);
 
 
  function handleLayer(feature,layer){ 
             layer.bindLabel(
-            'ID :'+feature.properties.D_ID +'<br>'+
             'District : ' + feature.properties.district +'<br>',{noHide: true})
 
             var setColor = layer.feature.properties.pradesh_no;
@@ -187,7 +188,7 @@ var provinceLayer = {
       mouseout: resetHighlight
     });
     layer.on('click', function (e) {
-      alert(layer.feature.properties.district)
+      window.location.replace("results/district" + "/" + layer.feature.properties.pradesh_no + "/" + feature.properties.district + "/");
           });
 }
 

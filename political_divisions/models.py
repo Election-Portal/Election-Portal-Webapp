@@ -8,6 +8,7 @@ class Province(models.Model):
     formation_date = models.DateField("Province was formed on", auto_now=False, auto_now_add=False)
     capital_city = models.CharField("Capital City", max_length=50)
     area = models.IntegerField()
+    pradesh_no = models.IntegerField()
     population = models.IntegerField()
     voters = models.IntegerField()
     chief_minister = models.CharField("Chief Minister", max_length=50)

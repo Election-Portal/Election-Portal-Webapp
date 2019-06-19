@@ -66,3 +66,27 @@ def pradeshsabha_result_details(request,pradeshsabha_pk):
         "contesting_candidates":contesting_candidates,
     }
     return render(request, template_name, context)
+
+
+def showDistrictSabhas(request, pradesh_no, district_name):
+    all_pradesh_sabhas = PradeshSabha.objects.all()
+    all_pratinidhi_sabhas = PratinidhiSabha.objects.all()
+    all_province = Province.objects.all()
+    all_district = District.objects.all()
+
+    province = get_object_or_404(Province, pradesh_no=pradesh_no)
+
+    filter_pradesh_sabhas = PradeshSabha.objects.filter(province__name=province, district__name=district_name)
+    filter_pratinidhi_sabhas = PratinidhiSabha.objects.filter(province__name=province, district__name=district_name)
+
+    template_name = "results/district_result.html"
+    context = {
+        "filter_pradesh_sabhas":filter_pradesh_sabhas,
+        "filter_pratinidhi_sabhas":filter_pratinidhi_sabhas,
+        "all_pradesh_sabhas":all_pradesh_sabhas,
+        "all_pratinidhi_sabhas":all_pratinidhi_sabhas,
+        "all_province":all_province,
+        "all_district":all_district,
+
+    }
+    return render(request, template_name, context)
