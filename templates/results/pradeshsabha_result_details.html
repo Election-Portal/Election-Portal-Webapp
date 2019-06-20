@@ -1,25 +1,61 @@
 {% extends 'base.html' %}
-
+{% load staticfiles %}
 
 {% block title %}
     Result of {{pradeshsabha.name}}
 {% endblock title %}
 
-
-
 {% block content %}
-<div class = "election-grid">
-    {{pradeshsabha.name}}</br>
-    Contesting Candidates:-</br>
-    
+
+<br /><br />
+<div class="page-content">
+    <div class="election-grid">
+    <div class="election-width-two-thirds">
+      <h2>Result of {{pradeshsabha.name}}</h2>
+    </div>
+  </div><br />
+
+<div class="election-grid">
+<ul class="team election-unstyled-list">
+
     {% for candidate in contesting_candidates  %}
+
+        {% if nominee.image %}
+            <img src="{{candidate.image.url}}" alt="Photo of {{ candidate.full_name }}">
+        {% else %}
+         <img src="{% url 'home' %}static/img/noimage.png" alt="Placeholder Nepal Government logo since {{ nominee.full_name }} does not have a photo yet">
+         {% endif %}
+
+
         {{candidate.full_name}} Votes = {{candidate.result.total_votes}}
 
 </br>
     {% endfor %}
-</div>
 
-        
+
+
+{% for nominee in all_nominees %}
+  <li>
+    <a href="{% url 'NomineeDetail' pk=nominee.pk %}">
+      {% if nominee.image %}
+        <img src="{{nominee.image.url}}" alt="Photo of {{ nominee.full_name }}">
+      {% else %}
+        <img src="{% url 'home' %}static/img/noimage.png" alt="Placeholder Nepal Government logo since {{ nominee.full_name }} does not have a photo yet">
+      {% endif %}
+    </a>
+    <div class="member-name">
+      <a href="{% url 'NomineeDetail' pk=nominee.pk %}">{{ nominee.full_name | capfirst }}</a>
+    </div>
+  </li>
+{% endfor %}
+</ul>
+
+
+</div>
+<br />
 {% endblock content %}
-    
+
+
+
+
     

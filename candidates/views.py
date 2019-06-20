@@ -14,7 +14,7 @@ def add_nominee(request):
         form = NomineeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponse("Nominee is addes successfully.")
+            return HttpResponse("Nominee is added successfully.")
     
     else:
         form = NomineeForm()

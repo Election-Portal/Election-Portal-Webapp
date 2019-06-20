@@ -75,11 +75,11 @@ def showDistrictSabhas(request, pradesh_no, district_name):
     all_district = District.objects.all()
 
     province = get_object_or_404(Province, pradesh_no=pradesh_no)
-
+    district_name = district_name.title()
     filter_pradesh_sabhas = PradeshSabha.objects.filter(province__name=province, district__name=district_name)
     filter_pratinidhi_sabhas = PratinidhiSabha.objects.filter(province__name=province, district__name=district_name)
 
-    template_name = "results/district_result.html"
+    template_name = "results/filter_list.html"
     context = {
         "filter_pradesh_sabhas":filter_pradesh_sabhas,
         "filter_pratinidhi_sabhas":filter_pratinidhi_sabhas,
