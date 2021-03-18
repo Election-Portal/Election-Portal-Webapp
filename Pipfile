@@ -7,7 +7,7 @@ verify_ssl = true
 
 [packages]
 chardet = "==3.0.4"
-django = "==2.2.13"
+django = "==2.2.18"
 django-gfklookupwidget = "==1.0.6"
 doc8 = "==0.8.0"
 docutils = "==0.14"
