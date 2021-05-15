@@ -4,6 +4,7 @@ Visit: http://electionportal.pythonanywhere.com/
 
 
 Abstract The purpose of Election Portal is to digitize election and election-related activities in Nepal. Election Portal, therefore, oﬀers a web application which stores candidate information, election constituency details, latest election results, and various other information directly related to election and enables the clients to fetch those data eﬃciently.
+
 .. contents ::
 
 Election Portal Web App
