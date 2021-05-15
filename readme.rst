@@ -13,7 +13,7 @@ The Project Name is [Election Portal Web App]
 [PROJECT_URL]
 
 Prerequisites
--------------
+--------------
 
 Installing Python
 ~~~~~~~~~~~~~~~~~
