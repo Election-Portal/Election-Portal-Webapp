@@ -4,41 +4,42 @@
     Results
 {% endblock title %}
 {% block extra_js %}
-<script src="{% static '/js/jquery.js' %}"></script>
-<script>
+  <script type="text/javascript" src="{% static '/assets/json/province_district.json' %}"></script>
+  <script type="text/javascript" src="{% static '/assets/json/pratinidhi_sabha.json' %}"></script>
+  <script>
+    var subjectObject = province_json;
 
-        $(document).ready(function(){
-    
-            $("select[name='Province']").change(function(){
-                var value =  $(this).val();
-                var pselect = $("select[name='District']");
-    
-                $.ajax({
-                    method:"get",
-                    dataType:"json",
-                    url:'show-district-options/',
-                    data:{
-                    'Province':value
-                    },
-                    success:function(data){
-                        pselect.empty();
-                        $.each(data, function(index, value){
-                            pselect.append("<option value='"+value.pk+"'>"+value.name+"</option>");
-                        });
-                    },
-    
-                });
-            });
-    
-        });
-        </script>
 
+
+    window.onload = function() {
+      var selected_province = document.getElementById("SelectedProvince");
+      var selected_district = document.getElementById("SelectedDistrict");
+      for (var x in subjectObject) {
+        console.log(x);
+          selected_province.options[selected_province.options.length] = 
+          new Option(x,x);
+        }
+        
+      selected_province.onchange = function() {
+        selected_district.length = 1;
+        for (var y in subjectObject[this.value]) {
+          selected_district.options[selected_district.options.length] = new Option(
+            y,y);
+        }
+      }
+
+    }
+  
+
+
+  </script>
 {% endblock extra_js %}
     
 {% block content %}
 <br /><br />
 <div class="page-content">
-    <div class="election-grid">
+
+  <div class="election-grid">
     <div class="election-width-two-thirds">
       <h2>Election 2074 Results</h2>
       <p class="election-font-lead">
@@ -46,47 +47,170 @@
       </p>
     </div>
   </div><br />
+
   <div class="election-grid">
-    <div class="election-width-one-third">
-        <select name="Province" id="SelectedProvince">
-            <option value="" selected>Select Province</option>
-            {% for province in all_province %}
-            <option value="{{ province.name }}">{{ province.name | capfirst }}</option>
-            {% endfor %}
-        </select>
-    </div>
-        
+          <form name="" id="" action="#">
+            <div class="election-width-one-third">
+              <select name="Province" id="SelectedProvince">
+                <option value="" selected>Select Province</option>
+              </select>
+            </div>
 
-    <div class="election-width-one-third">
-        <select name="District" id="SelectedDistrict">
-          <option value="" selected>Choose District</option>
-          {% for district in all_district %}
-          <option value="{{ district.id }}">{{ district.name | capfirst }}</option>
-          {% endfor %}
-        </select>
-</div>
-    <div class="election-width-one-third">
-        <button value="Submit" class="election-button-big" onclick="RedirecttoDistrict()">Search</button> 
-</div>
-</div>
-        <script>
-          function RedirecttoDistrict() {
-            var province = document.getElementById("SelectedProvince");
-            var district = document.getElementById("SelectedDistrict");
-            var selected_province = province.options[province.selectedIndex].value;
-            var selected_district = district.options[district.selectedIndex].value;
-           
-            //var hold = document.getElementById("options");
-           // var selectedVal = hold.options[hold.selectedIndex].value;
+            <div class="election-width-one-third">
+              <select name="District" id="SelectedDistrict">
+                <option value="" selected>Choose District</option>
+              </select>
+            </div>
 
-           window.location.replace(selected_province + "/" + selected_district + "/");
-           return false;
-          }
-        </script>
-      </form>
-    </div>
-  </div>
+            <div class="election-width-one-third">
+              <button value="Submit" class="election-button-medium" 
+              onclick="RedirecttoDistrict()">Search</button> 
+            </div>
+          </form>
+  </div><br />
+
+<div class="election-grid ">
+    <!-- Table structure here -->
+    <table class="election-table-borderless" id="our-table">
+        <thead>
+            <tr>
+                <th>Candidate Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>PoliticalPartyName</th>
+                <th>District</th>
+                <th>State</th>
+                <th>SCConstID</th>
+                <th>TotalVoteReceived</th>
+                <th>Rank</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+
+        </tbody>
+    </table>
+</div>
+<br />
+<div class="election-grid ">
+    <div id="pagination-wrapper"></div>
+</div>
+
 </div><br /><br />
 {% endblock content %}
 
+{% block footer_js %}
+<script>
+
+
+    // Election Results
+var tableData = pratinidhi_sabha; // load from json file
+
+/*
+	1 - Loop Through Array & Access each value
+  2 - Create Table Rows & append to table
+*/
+
+
+var state = {
+    'querySet': tableData,
+
+    'page': 1,
+    'rows': 7,
+    'window': 7,
+}
+
+buildTable()
+
+function pagination(querySet, page, rows) {
+
+    var trimStart = (page - 1) * rows
+    var trimEnd = trimStart + rows
+
+    var trimmedData = querySet.slice(trimStart, trimEnd)
+
+    var pages = Math.round(querySet.length / rows);
+
+    return {
+        'querySet': trimmedData,
+        'pages': pages,
+    }
+}
+
+function pageButtons(pages) {
+    var wrapper = document.getElementById('pagination-wrapper')
+
+    wrapper.innerHTML = ``
+	console.log('Pages:', pages)
+
+    var maxLeft = (state.page - Math.floor(state.window / 2))
+    var maxRight = (state.page + Math.floor(state.window / 2))
+
+    if (maxLeft < 1) {
+        maxLeft = 1
+        maxRight = state.window
+    }
+
+    if (maxRight > pages) {
+        maxLeft = pages - (state.window - 1)
+        
+        if (maxLeft < 1){
+        	maxLeft = 1
+        }
+        maxRight = pages
+    }
     
+    
+
+    for (var page = maxLeft; page <= maxRight; page++) {
+    	wrapper.innerHTML += `<button value=${page} class="page election-button">${page}</button>`
+    }
+
+    if (state.page != 1) {
+        wrapper.innerHTML = `<button value=${1} class="page election-button">&#171; First</button>` + wrapper.innerHTML
+    }
+
+    if (state.page != pages) {
+        wrapper.innerHTML += `<button value=${pages} class="page election-button">Last &#187;</button>`
+    }
+
+    $('.page').on('click', function() {
+        $('#table-body').empty()
+
+        state.page = Number($(this).val())
+
+        buildTable()
+    })
+
+}
+
+
+function buildTable() {
+    var table = $('#table-body')
+
+    var data = pagination(state.querySet, state.page, state.rows)
+    var myList = data.querySet
+
+    for (var i = 1 in myList) {
+        //Keep in mind we are using "Template Litterals to create rows"
+        var row = `<tr>
+                  <td>${myList[i].CandidateName}</td>
+                  <td>${myList[i].Gender}</td>
+                  <td>${myList[i].Age}</td>
+                  <td>${myList[i].PoliticalPartyName}</td>
+                  <td>${myList[i].DistrictName}</td>
+                  <td>${myList[i].State}</td>
+                  <td>${myList[i].SCConstID}</td>
+                  <td>${myList[i].TotalVoteReceived}</td>
+                  <td>${myList[i].Rank}</td>
+                  <td>${myList[i].Remarks}</td>
+                  
+                  `
+        table.append(row)
+    }
+
+    pageButtons(data.pages)
+}
+
+</script>
+{% endblock footer_js %}

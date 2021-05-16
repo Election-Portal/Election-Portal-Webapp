@@ -43,7 +43,7 @@
   </header>
   <br /><br />
 <div class="election-grid">
-  <div id="map" style="height: 400px;"></div>
+  <div id="map" style="height: 700px;"></div>
 
 </div>
 <div class="election-grid">
@@ -51,9 +51,9 @@
   <div class="election-width-one-third">
   <div class="large-numbers">
     <ol>
-      <li><a href="#"><strong>{{ total_population }}</strong> Population</a></li>
-      <li><a href="#"><strong>{{ total_voters }} </strong> Total Voters</a></li>
-      <li><a href="#"><strong>{{ total_parties }}</strong> Political Parties with Election Sign</a></li>
+      <li><a href="#"><strong>32,082,268</strong> Population</a></li>
+      <li><a href="#"><strong>14,054,482 </strong> Total Voters</a></li>
+      <li><a href="#"><strong>80</strong> Political Parties with Election Sign</a></li>
     </ol>
   </div>
 </div>
@@ -95,7 +95,181 @@
     </div>
   </div><br /><br />
  <br/>
- <script>
+
+<script>
+L.TopoJSON = L.GeoJSON.extend({
+    addData: function (jsonData) {
+        if (jsonData.type === "Topology") {
+            for (key in jsonData.objects) {
+                geojson = topojson.feature(jsonData, jsonData.objects[key]);
+                L.GeoJSON.prototype.addData.call(this, geojson);
+            }
+        }
+        else {
+            L.GeoJSON.prototype.addData.call(this, jsonData);
+        }
+    }
+});
+
+
+
+// map layer
+(function () {
+    var map = L.map('map', {maxZoom: 7.9, minZoom: 6.9}),
+        topoLayer = new L.TopoJSON(),
+        colorScale = chroma
+            .scale(['#D5E3FF', '#003171'])
+            .domain([0, 1]);
+
+    map.setView([28.1999999, 84.100140], 7);
+
+    $.getJSON('static/js/gisdata/nepal-districts.topo_edit.json').done(addTopoData);
+
+    function addTopoData(topoData) {
+        topoLayer.addData(topoData);
+        topoLayer.addTo(map);
+        topoLayer.eachLayer(handleLayer);
+    }
+
+    // end map layer
+
+    // set highlight color
+    function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle(
+            {
+                weight: 1,
+                color: 'black',
+                fillColor: 'blue',
+            }
+        );
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+
+    // end highlight color
+
+    // reset  color hightlight
+    function resetHighlight(e) {
+        var layer = e.target;
+        var setColor = layer.feature.properties.pradesh_no
+        layer.setStyle(
+            {
+                fillColor: getProvinceColor(setColor),
+                weight: 2,
+                opacity: 1,
+                color: 'white',
+                dashArray: 3,
+                fillOpacity: 0.7
+            }
+        );
+
+        if (!L.Browser.ie && !L.Browser.opera) {
+            layer.bringToFront();
+        }
+    }
+
+    // end resethightlight
+
+
+    // each layer function
+    function handleLayer(layer) {
+        layer.bindLabel(layer.feature.properties.name, {noHide: true})
+        var code = layer.feature.properties.name;
+        var setColor = layer.feature.properties.pradesh_no;
+        layer.setStyle({
+            fillColor: getProvinceColor(setColor),
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: 3,
+            fillOpacity: 0.7
+        });
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight,
+
+        });
+
+        layer.on('click', function (e) {
+            getUpdate(layer.feature.properties.name);
+        });
+    }
+
+    // end each layer
+
+
+    // defined state color
+    function getProvinceColor(state) {
+        if (state == 7) {
+            return 'red';
+        } else if (state == 6) {
+            return '#c1a73e';
+        } else if (state == 5) {
+            return '#da8b4a';
+        }
+        else if (state == 4) {
+            return '#26a9e8';
+        }
+        else if (state == 3) {
+            return '#40a500';
+        }
+        else if (state == 2) {
+            return '#e271a1';
+        }
+        else if (state == 1) {
+            return '#900e94';
+        }
+
+    }
+
+    // end
+
+
+    // Map Legend
+    var legend = L.control({position: 'topright'});
+    legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'legend');
+        var labels = [
+            "Province No. 1",
+            "Province No. 2",
+            "Province No. 3",
+            "Province No. 4",
+            "Province No. 5",
+            "Province No. 6",
+            "Province No. 7"
+        ];
+        var grades = [1, 2, 3, 4, 5, 6, 7];
+        div.innerHTML = '<div><h6>Province Index</h6></div>';
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML += '<i style="background:'
+                + getProvinceColor(grades[i]) + '">&nbsp;&nbsp;&nbsp;&nbsp;</i>&nbsp;&nbsp;'
+                + labels[i] + '<br />';
+        }
+        return div;
+    }
+    legend.addTo(map);
+
+    // end legend
+
+
+}());
+
+
+
+
+
+</script>
+{% endblock content %}
+
+
+
+
+{% comment %} 
+
+
 
 	var map = L.map('map').setView([28.1999999, 84.100140], 7);
 
@@ -114,59 +288,14 @@
         onEachFeature: handleLayer,
 
   }).addTo(map)
-/*
- district = L.geoJson(null, { style: function (feature) {
-      return {
-                weight: 2,
-                color: 'black',
-                fillColor:'none'     
-      }
-    },
-  }).addTo(map)
-*/
-
-/*
- province = L.geoJson(null, { style: function (feature) {
-      return {
-                weight: 2,
-                color: 'red',
-                fillColor:'none'     
-      }
-    },
-        
-  }).addTo(map)
-
-  */
-/*
-  d3.json('/static/js/gisdata/municipality.topojson', function(error, data) {
-  var neighborhoods = topojson.feature(data, data.objects.collection)
-  locallevel.addData(neighborhoods);
-})
-*/
+//2
 
 
 d3.json('/static/js/gisdata/district.topojson', function(error, data) {
   var neighborhoods = topojson.feature(data, data.objects.collection)
   district.addData(neighborhoods);
 })
-/*
-
-d3.json('/static/js/gisdata/province.topojson', function(error, data) {
-  var neighborhoods = topojson.feature(data, data.objects.collection)
-  province.addData(neighborhoods);
-})
-
-
-var districtLayer = {
-    "District": district,
-};
-
-var provinceLayer = {
-     "Province": province,
-};
-*/
-
-//L.control.layers(districtLayer,provinceLayer).addTo(map);
+// 1
 
 
  function handleLayer(feature,layer){ 
@@ -265,5 +394,45 @@ var provinceLayer = {
     // end resethightlight
 
 
-</script>
-{% endblock content %}
+//1
+/*
+
+d3.json('/static/js/gisdata/province.topojson', function(error, data) {
+  var neighborhoods = topojson.feature(data, data.objects.collection)
+  province.addData(neighborhoods);
+})
+
+
+var districtLayer = {
+    "District": district,
+};
+
+var provinceLayer = {
+     "Province": province,
+};
+*/
+
+//L.control.layers(districtLayer,provinceLayer).addTo(map);
+
+//2
+/*
+
+d3.json('/static/js/gisdata/province.topojson', function(error, data) {
+  var neighborhoods = topojson.feature(data, data.objects.collection)
+  province.addData(neighborhoods);
+})
+
+
+var districtLayer = {
+    "District": district,
+};
+
+var provinceLayer = {
+     "Province": province,
+};
+*/
+
+//L.control.layers(districtLayer,provinceLayer).addTo(map);
+//3
+ {% endcomment %}
+
